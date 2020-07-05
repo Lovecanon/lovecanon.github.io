@@ -1,32 +1,74 @@
-## Welcome to GitHub Pages
+## Lovecanon Blog
 
-You can use the [editor on GitHub](https://github.com/Lovecanon/lovecanon.github.com/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### 安装
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+##### 1、使用Rben安装Ruby
+Rbenv是一个轻量级的Ruby版本管理实用程序，可让您轻松切换Ruby版本。
 
-### Markdown
+我们还将安装ruby-build插件，该插件扩展了Rbenv的核心功能，使我们可以轻松地从源代码安装任何Ruby版本。
+```bash
+# 安装ruby-build工具所需的依赖项
+$ yum install git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl sqlite-devel
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+# 运行以下 curl命令安装rbenv和ruby-build
+$ curl -sL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash -
+Running doctor script to verify installation...
+Checking for `rbenv' in PATH: which: no rbenv in (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/usr/local/go/bin:/home/go/bin)
+not found
+  You seem to have rbenv installed in `/root/.rbenv/bin', but that
+  directory is not present in PATH. Please add it to PATH by configuring
+  your `~/.bashrc', `~/.zshrc', or `~/.config/fish/config.fish'.
 
-```markdown
-Syntax highlighted code block
+# 脚本将克隆这两个 rbenv 和 ruby-build 从GitHub到~/.rbenv目录的存储库。安装程序脚本还会调用另一个脚本，该脚本将尝试验证安装。
+# 如果您使用的是Bash，请输入：
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+source ~/.bashrc
 
-# Header 1
-## Header 2
-### Header 3
+# 我们已经在系统上安装了rbenv，我们可以轻松安装最新的Ruby稳定版本并将其设置为默认版本
+rbenv install 2.5.1
+rbenv global 2.5.1
 
-- Bulleted
-- List
+# 要列出所有可用的Ruby版本，您可以使用：
+rbenv install -l
 
-1. Numbered
-2. List
+# 通过打印版本号来验证Ruby是否已正确安装：
+ruby -v
 
-**Bold** and _Italic_ and `Code` text
+# 如果此时ruby版本还是2.0.0，卸载yum安装的ruby即可：yum remove ruby
+```
+### 替换gem源
+```bash
+# 更新gem，尽可能用比较新的 RubyGems 版本，建议 2.6.x 以上
+$ gem update --system # 这里请翻墙一下
+$ gem -v
+2.6.3
 
-[Link](url) and ![Image](src)
+$ gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+$ gem sources -l
+https://gems.ruby-china.com
+# 确保只有 gems.ruby-china.com
+
+# 如果你使用 Gemfile 和 Bundler (例如：Rails 项目)
+# 你可以用 Bundler 的 Gem 源代码镜像命令
+$ bundle config mirror.https://rubygems.org https://gems.ruby-china.com
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### 安装 Jekyll 和 bundler gems
+```bash
+gem install bundler jekyll
+
+# 构建网站并启动一个本地服务器。
+bundle exec jekyll serve
+
+# 根据Gemfile安装依赖
+bundle install
+# 如果报错，/root/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems.rb:289:in `find_spec_for_exe': can't find gem bundler (>= 0.a) with executable bundler (Gem::GemNotFoundException)
+# 考虑删除 Gemfile.lock 文件即可
+
+# 运行，enjoy！
+bundle exec jekyll serve -H 0.0.0.0
+```
 
 ### Jekyll Themes
 
