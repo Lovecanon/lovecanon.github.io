@@ -3,7 +3,6 @@ layout: post
 title: Centos7安装yum
 tags: [centos, yum, linux]
 description: "Centos7安装yum"
-image: ''
 ---
 
 
