@@ -1,0 +1,45 @@
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name='description' content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <link rel='canonical' href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel='alternate' type='application/rss+xml' title='{{ site.title }}' href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
+
+  <style>
+    {% capture inlineCSS %}
+      {% include app.scss %}
+    {% endcapture %}
+
+    {{ inlineCSS | scssify }}
+
+    table {
+   padding: 0; }
+   table tr {
+     border-top: 1px solid #cccccc;
+     background-color: white;
+     margin: 0;
+     padding: 0; }
+     table tr:nth-child(2n) {
+       background-color: #f8f8f8; }
+     table tr th {
+       font-weight: bold;
+       border: 1px solid #cccccc;
+       text-align: left;
+       margin: 0;
+       padding: 6px 13px; }
+     table tr td {
+       border: 1px solid #cccccc;
+       text-align: left;
+       margin: 0;
+       padding: 6px 13px; }
+     table tr th :first-child, table tr td :first-child {
+       margin-top: 0; }
+     table tr th :last-child, table tr td :last-child {
+       margin-bottom: 0; }
+
+
+  </style>
+</head>
