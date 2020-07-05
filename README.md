@@ -70,6 +70,25 @@ bundle install
 bundle exec jekyll serve -H 0.0.0.0
 ```
 
+### 使用
+
+##### 1、文章顶部设置预定义的变量
+在这些三点虚线之间，您可以设置预定义的变量（请参阅下面的参考），甚至可以创建自己的自定义变量。
+
+然后，您可以使用Liquid标记访问这些变量，这些标记既可以在文件中的更下方，也可以在任何页面或相关页面所依赖的布局中使用。
+
+```yaml
+---
+layout: post
+title: Blogging Like a Hacker
+---
+```
+
+**参考：**
+* [Front Matter](http://jekyllrb.com/docs/frontmatter/)
+* [Variables](https://jekyllrb.com/docs/variables/)
+
+
 ### Jekyll Themes
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Lovecanon/lovecanon.github.com/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
