@@ -50,5 +50,8 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
 EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+
+# 查看镜像信息
+docker info
 ```
 
