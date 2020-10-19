@@ -61,3 +61,20 @@ search com
 nameserver 8.8.8.8 
 ```
 
+
+### jenkins安装
+```bash
+yum install java-1.8.0-openjdk-devel
+
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+yum -y install jenkins
+
+# 如果报错：applydeltarpm not installed
+yum provides '*/applydeltarpm'  # 查看是哪个包提供applydeltarpm
+yum install deltarpm -y
+```
+
+
+
+
