@@ -31,6 +31,14 @@ def index():
     return "Index Page"
 ```
 
+### 本地运行
+```bash
+# 常用命令
+# 本地运行，注：本地需要安装：gunicorn
+heroku local web
+```
+
+
 ### 部署
 
 ```bash
@@ -41,3 +49,9 @@ $ git add .
 $ git commit -am "make it better"
 $ git push heroku master  # 项目将上传、自动部署、运行在Heroku中
 ```
+
+### 注意事项
+* `heroku login -i`：直接输入用户名密码登陆，简单方便；
+* `requirements.txt`文件需要添加：`gunicorn`库
+
+
