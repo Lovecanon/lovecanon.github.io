@@ -75,6 +75,43 @@ yum provides '*/applydeltarpm'  # 查看是哪个包提供applydeltarpm
 yum install deltarpm -y
 ```
 
+### 问题
+##### gitlab设置webhook时，提示CSRF验证
+gitlab错误描述：
+```html
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Error 403 No valid crumb was included in the request</title>
+</head>
+<body><h2>HTTP ERROR 403</h2>
+<p>Problem accessing /job/AndroidTestCase/build. Reason:
+<pre>    No valid crumb was included in the request</pre></p><hr><i><small>Powered by Jetty://</small></i><hr/>
+```
+
+解决：
+`Manage Jenkins` --> `Script Console`
+```groovy
+import jenkins.model.Jenkins
+def instance = Jenkins.instance
+instance.setCrumbIssuer(null)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
