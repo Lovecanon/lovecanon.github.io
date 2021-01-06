@@ -1,3 +1,15 @@
+# Centos7安装postgresql96
+```bash
+# 删除已存在的postgresql
+# rpm -qa|grep postgre|xargs rpm -ev --allmatches --nodeps
+
+yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+yum -y install postgresql96
+yum -y install postgresql96-devel
+```
+
+
+# Centos7安装postgresql96
 ### commands explaination
 * `dnf module list`：列出所有可用的modules
 * `dnf module list postgresql`：列出指定软件包的可用modules，Profiles列中的[i]表示已安装版本
