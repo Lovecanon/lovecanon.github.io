@@ -19,6 +19,21 @@
 }
 ```
 
+### windows keymap
+ 编辑Preferences -> Key Bindings
+```
+[
+    // delete line
+    { "keys": ["ctrl+d"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    // newline
+    { "keys": ["shift+enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line.sublime-macro"} },
+    // find
+    { "keys": ["ctrl+f"], "command": "show_panel", "args": {"panel": "find", "reverse": false} },
+    // find and replace
+    { "keys": ["ctrl+h"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
+]
+```
+
 ### sfpt配合focus_lost配置自动上传
 1、切换程序时保存文件
 ```bash
