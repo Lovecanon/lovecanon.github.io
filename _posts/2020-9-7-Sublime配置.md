@@ -42,12 +42,15 @@
 ```
 2、安装并配置sftp
 2.1 安装sftp插件；
-2.2 激活sftp插件：修改`C:\Users\<username>\AppData\Roaming\Sublime Text 3\Packages\SFTP`
+2.2 激活sftp插件：修改`Preferences -> Package Settings -> SFTP -> Settings`
 ```json
 {
-  	"debug": false,
-    "email": "sftp@sftp.org",
-    "product_key": "227fd9-891cd4-ea5e0b-70267b-916e36",
+  // 隐藏弹出的日志信息
+	"hide_output_panel": true,
+
+	"debug": false,
+	"email": "sftp@sftp.org",
+	"product_key": "227fd9-891cd4-ea5e0b-70267b-916e36",
 }
 ```
 
