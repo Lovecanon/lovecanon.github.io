@@ -42,7 +42,7 @@
 ```
 2、安装并配置sftp
 2.1 安装sftp插件；
-2.2 激活sftp插件：修改`C:\Users\datatom\AppData\Roaming\Sublime Text 3\Packages\SFTP`
+2.2 激活sftp插件：修改`C:\Users\<username>\AppData\Roaming\Sublime Text 3\Packages\SFTP`
 ```json
 {
   	"debug": false,
