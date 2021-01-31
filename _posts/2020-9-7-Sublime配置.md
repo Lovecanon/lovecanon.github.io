@@ -1,5 +1,8 @@
 # sublime
-
+### 插件合集
+* Terminus
+* SideBarEnhancements
+* sftp
 
 ### 高亮React项目
 
@@ -31,6 +34,12 @@
     { "keys": ["ctrl+f"], "command": "show_panel", "args": {"panel": "find", "reverse": false} },
     // find and replace
     { "keys": ["ctrl+h"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
+    // Open a terminal tab at current file directory
+    {
+        "keys": ["ctrl+shift+t"], "command": "terminus_open", "args": {
+            "cwd": "${file_path:${folder}}"
+        }
+    }
 ]
 ```
 
