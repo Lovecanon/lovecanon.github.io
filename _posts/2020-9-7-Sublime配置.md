@@ -27,7 +27,7 @@
 2、添加
 ```
 {
-    "cmd": ["gcc", "${file}", "-o", "${file_path}/${file_base_name}.exe", "-Wall"],
+    "cmd": ["gcc", "${file}", "-o", "${file_path}/${file_base_name}.exe", "-Wall", "-Wextra", "-pedantic", "-std=c99"],
     "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
     "working_dir": "${file_path}",
     "selector": "source.c, source.cpp, source.c++",
@@ -36,7 +36,7 @@
     "variants": [
         {
             "name": "Run",
-            "cmd": ["gcc", "${file}", "-o", "${file_path}/${file_base_name}.exe", "-Wall", "&", "${file_path}/${file_base_name}.exe"]
+            "cmd": ["gcc", "${file}", "-o", "${file_path}/${file_base_name}.exe", "-Wall", "-Wextra", "-pedantic", "-std=c99", "&", "${file_path}/${file_base_name}.exe"]
         }
     ]
 }
