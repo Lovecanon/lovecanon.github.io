@@ -22,6 +22,28 @@
 }
 ```
 
+### 编译、运行C代码
+1、Tools --> Build System --> New Build System
+2、添加
+```
+{
+    "cmd": ["gcc", "${file}", "-o", "${file_path}/${file_base_name}.exe", "-Wall"],
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    "working_dir": "${file_path}",
+    "selector": "source.c, source.cpp, source.c++",
+    "path": "C://MinGW/bin",
+    "shell": true,
+    "variants": [
+        {
+            "name": "Run",
+            "cmd": ["gcc", "${file}", "-o", "${file_path}/${file_base_name}.exe", "-Wall", "&", "${file_path}/${file_base_name}.exe"]
+        }
+    ]
+}
+```
+3、保存成`myc.sublime-build`文件
+
+
 ### windows keymap
  编辑Preferences -> Key Bindings
 ```
