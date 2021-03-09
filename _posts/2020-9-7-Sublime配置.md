@@ -4,6 +4,51 @@
 * SideBarEnhancements
 * sftp
 
+### 我的sublime配置
+
+Preferences.sublime.settings - User
+```
+{
+	"color_scheme": "Packages/Color Scheme - Default/Celeste.sublime-color-scheme",
+	"default_line_ending": "unix",
+	"font_size": 16,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"theme": "Adaptive.sublime-theme",
+	// 关闭软件自动更新
+	"update_check": false,
+	// 软件失去焦点，则保存文件
+	"save_on_focus_lost": true,
+	// tab替换成4个空格
+	"tab_size": 4,
+	"translate_tabs_to_spaces": true,
+	// 显示空格、tab字符
+	// "draw_white_space": "all",
+
+	// 保存时自动去除行末空白
+    "trim_trailing_white_space_on_save": true,
+	// 保存时自动增加文件末尾换行
+    "ensure_newline_at_eof_on_save": true,
+    // 默认文件编码
+    "default_encoding": "UTF-8",
+    // 高亮当前行
+	"highlight_line": true,
+
+	// 增加行间距
+    // "line_padding_bottom": 1,
+    // "line_padding_top": 1,
+
+    // "fade_fold_buttons": false,
+    // "word_wrap": true,
+
+	// 修改光标样式。solid是不闪烁
+	"caret_style": "solid",
+
+}
+```
+
 ### 高亮React项目
 
  1. <b>For windows:</b> Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> <b>For mac:</b> <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
