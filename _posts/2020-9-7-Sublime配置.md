@@ -49,6 +49,28 @@ Preferences.sublime.settings - User
 }
 ```
 
+### windows keymap
+ 编辑Preferences -> Key Bindings
+```
+[
+    // delete line
+    { "keys": ["ctrl+d"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    // newline
+    { "keys": ["shift+enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line.sublime-macro"} },
+    // find
+    { "keys": ["ctrl+f"], "command": "show_panel", "args": {"panel": "find", "reverse": false} },
+    // find and replace
+    { "keys": ["ctrl+h"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
+    // Open a terminal tab at current file directory
+    {
+        "keys": ["ctrl+shift+t"], "command": "terminus_open", "args": {
+            "cwd": "${file_path:${folder}}"
+        }
+    }
+]
+```
+
+
 ### 高亮React项目
 
  1. <b>For windows:</b> Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> <b>For mac:</b> <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
@@ -87,28 +109,6 @@ Preferences.sublime.settings - User
 }
 ```
 3、保存成`myc.sublime-build`文件
-
-
-### windows keymap
- 编辑Preferences -> Key Bindings
-```
-[
-    // delete line
-    { "keys": ["ctrl+d"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
-    // newline
-    { "keys": ["shift+enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line.sublime-macro"} },
-    // find
-    { "keys": ["ctrl+f"], "command": "show_panel", "args": {"panel": "find", "reverse": false} },
-    // find and replace
-    { "keys": ["ctrl+h"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
-    // Open a terminal tab at current file directory
-    {
-        "keys": ["ctrl+shift+t"], "command": "terminus_open", "args": {
-            "cwd": "${file_path:${folder}}"
-        }
-    }
-]
-```
 
 ### sfpt配合focus_lost配置自动上传
 1、切换程序时保存文件
@@ -177,5 +177,18 @@ Preferences.sublime.settings - User
     //"remote_locale": "C",
     //"allow_config_upload": false,
 }
+```
+
+### HOSTS文件修改
+```
+127.0.0.1 www.sublimetext.com
+127.0.0.1 sublimetext.com
+127.0.0.1 sublimehq.com
+127.0.0.1 license.sublimehq.com
+127.0.0.1 45.55.255.55
+127.0.0.1 45.55.41.223
+0.0.0.0 license.sublimehq.com
+0.0.0.0 45.55.255.55
+0.0.0.0 45.55.41.223
 ```
 
