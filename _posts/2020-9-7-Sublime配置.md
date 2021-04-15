@@ -9,6 +9,9 @@
 Preferences.sublime.settings - User
 ```
 {
+  // 这个color scheme也不错
+  // "caret_style": "solid",
+  // "color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
 	"color_scheme": "Packages/Color Scheme - Default/Celeste.sublime-color-scheme",
 	"default_line_ending": "unix",
 	"font_size": 16,
