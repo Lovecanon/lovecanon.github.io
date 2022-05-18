@@ -87,16 +87,10 @@ title: Blogging Like a Hacker
 ```
 
 **参考：**
+* [原作者：type-jekyll](https://github.com/ahmadajmi/type)
 * [Front Matter](http://jekyllrb.com/docs/frontmatter/)
 * [Variables](https://jekyllrb.com/docs/variables/)
 
 ### 注意事项
 * 不能在`analytics.html`文件中包含注释：`<!-- Global site tag (gtag.js) - Google Analytics -->`
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Lovecanon/lovecanon.github.com/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
