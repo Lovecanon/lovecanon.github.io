@@ -114,12 +114,14 @@ func NewStuffClient(conn Connection, opts ...StuffClientOption) StuffClient {
 现在我们可以通过下面方法调用：
 ```go
 x := NewStuffClient(Connection{})
-fmt.Println(x) // prints &{{} 2 3}
+fmt.Println(x) // 输出：&{{} 2 3}
+
 x = NewStuffClient(
     Connection{},
     WithRetries(1),
 )
-fmt.Println(x) // prints &{{} 2 1}
+fmt.Println(x) // 输出：&{{} 2 1}
+
 x = NewStuffClient(
     Connection{},
     WithRetries(1),
