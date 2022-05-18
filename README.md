@@ -90,6 +90,8 @@ title: Blogging Like a Hacker
 * [Front Matter](http://jekyllrb.com/docs/frontmatter/)
 * [Variables](https://jekyllrb.com/docs/variables/)
 
+### 注意事项
+* 不能在`analytics.html`文件中包含注释：`<!-- Global site tag (gtag.js) - Google Analytics -->`
 
 ### Jekyll Themes
 
