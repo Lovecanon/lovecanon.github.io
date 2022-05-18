@@ -114,20 +114,20 @@ func NewStuffClient(conn Connection, opts ...StuffClientOption) StuffClient {
 现在我们可以通过下面方法调用：
 ```go
 x := NewStuffClient(Connection{})
-fmt.Println(x) // 输出：&{{} 2 3}
+fmt.Println(x) // 输出：&{ {} 2 3 }
 
 x = NewStuffClient(
     Connection{},
     WithRetries(1),
 )
-fmt.Println(x) // 输出：&{{} 2 1}
+fmt.Println(x) // 输出：&{ {} 2 1 }
 
 x = NewStuffClient(
     Connection{},
     WithRetries(1),
     WithTimeout(1),
 )
-fmt.Println(x) // prints &{{} 1 1}
+fmt.Println(x) // 输出：&{ {} 1 1 }
 ```
 
 看起来不错！！！这种做法还有一个好处：我们随时可以新增新的配置，但开发者无需修改自己的代码。
