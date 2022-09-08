@@ -1,0 +1,19 @@
+ [book]
+title = "Lovecanon's Blog"
+authors = ["Lovecanon"]
+description = "Lovecanon's Blog"
+language = "zh"
+multilingual = false
+src = "."
+
+[build]
+build-dir = "book"
+
+[output.html]
+mathjax-support = true
+
+[output.html.search]
+enable = true
+
+[output.html.print]
+enable = false
