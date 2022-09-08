@@ -4,3 +4,4 @@
 
 # Golang
 * [将Golang程序作为服务安装到MacOS、Windows、Linux系统中](docs/run-golang-application-as-a-macos-windows-linux-service.md)
+* [[译]Functional Options Pattern in Go](docs/2022-03-19-[译]Functional-Options-Pattern-in-Go.md)
