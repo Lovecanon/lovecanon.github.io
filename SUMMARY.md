@@ -3,5 +3,9 @@
 [README](README.md)
 
 # Golang
-* [将Golang程序作为服务安装到MacOS、Windows、Linux系统中](docs/run-golang-application-as-a-macos-windows-linux-service.md)
-* [[译]Functional Options Pattern in Go](docs/2022-03-19-[译]Functional-Options-Pattern-in-Go.md)
+  - [将Golang程序作为服务安装到MacOS、Windows、Linux系统中](docs/将Golang程序作为服务安装到MacOS、  - Windows、Linux系统中.md)
+  - [[译]Functional-Options-Pattern-in-Go](docs/'[译]Functional-Options-Pattern-in-Go.md')
+  - [Centos7-8安装postgresql9.6](docs/Centos7-8安装postgresql9.6.md)
+  - [Centos7安装yum](docs/Centos7安装yum.md)
+  - [heroku部署flask程序](docs/heroku部署flask程序.md)
+  - [VIM配置](docs/VIM配置.md)

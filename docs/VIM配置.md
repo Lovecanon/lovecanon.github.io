@@ -1,8 +1,12 @@
-
+<!-- 
+Date: 2021-02-08
+Title:
+Tags: ["vim", "linux"]
+Category: Linux
+ -->
 # VIM配置
 
-
-### 升级vim
+## 升级vim
 ```bash
 # 删除vim
 yum list installed | grep vim
@@ -24,11 +28,9 @@ make install
 
 # 重开bash，查看vim版本
 vim --version | head -1
-
-
 ```
 
-### vim-clangd安装
+## vim-clangd安装
 ```bash
 # 安装依赖
 yum -y install glibc
@@ -45,25 +47,20 @@ mkdir build && cd build
 cmake -G "Unix Makefiles" -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" -DCMAKE_INSTALL_PREFIX=~/tools/llvm -DCMAKE_BUILD_TYPE=Release ../llvm
 make -j 16
 make install
-
 ```
 
-
-### Issue
-##### 解决`Error detected while processing /root/.vimrc:`警告
+## Issue
+### 解决`Error detected while processing /root/.vimrc:`警告
 ```bash
 # 添加：export EDITOR=/usr/bin/vim
 $ vim /root/.bashrc
 ```
 
-##### ultisnips运行错误
+### ultisnips运行错误
 ```bash
 编译vim时需要：--enable-python3interp参数
 ```
 
-
-参考：
-
+## 参考：
 * [clangd安装教程](https://jdhao.github.io/2021/07/03/install_clangd_on_linux/)
 * [cmake官网](https://cmake.org/download/)
-

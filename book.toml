@@ -11,6 +11,7 @@ build-dir = "book"
 
 [output.html]
 mathjax-support = true
+default-theme = "rust"
 
 [output.html.search]
 enable = true

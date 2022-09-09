@@ -1,3 +1,9 @@
+<!-- 
+Date: 2022-03-19
+Title: 
+Tags: ["Golang"]
+Category: Golang
+ -->
 # [译]Functional Options Pattern in Go
 原文链接：[Functional Options Pattern in Go](https://halls-of-valhalla.org/beta/articles/functional-options-pattern-in-go,54/)
 
@@ -221,4 +227,3 @@ func (c stuffClient) DoStuff() error {
 [Go Playground](https://play.golang.org/p/Z5P5Om4KDL)，运行看看！！这个例子中，我们直接将`WithXXX`的参数应用到`defaultStuffClient`默认客户端对象中，看样子并不需要额外的config结构体`StuffClientOptions`。其实不然，多数情况下我们依旧需要使用config结构体。举个栗子，如果你的构造函数使用配置选项来执行一些操作, 并不需要把它们存储到结构中, 或将其传递到其他地方。显然，config结构体的实现更加通用。
 
 最后，感谢[Rob Pike](https://commandcenter.blogspot.de/2014/01/self-referential-functions-and-design.html)和[Dave Cheney](https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)推广这种设计模式。
-

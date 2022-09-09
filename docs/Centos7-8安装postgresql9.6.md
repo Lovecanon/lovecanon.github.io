@@ -1,3 +1,9 @@
+<!-- 
+Date: 2020-11-26
+Title:
+Tags: ["PostgreSQL", "linux"]
+Category: Linux
+ -->
 # Centos7安装postgresql96
 ```bash
 # 删除已存在的postgresql
@@ -8,8 +14,7 @@ yum -y install postgresql96
 yum -y install postgresql96-devel
 ```
 
-
-# Centos7安装postgresql96
+## Centos7安装postgresql96
 ### commands explaination
 * `dnf module list`：列出所有可用的modules
 * `dnf module list postgresql`：列出指定软件包的可用modules，Profiles列中的[i]表示已安装版本
@@ -21,7 +26,7 @@ yum -y install postgresql96-devel
 * `systemctl enable --now postgresql`：在系统启动时启动
 * `postgresql-setup initdb`：初始化PostgreSQL数据库
 
-##### 监听0.0.0.0和修改密码
+### 监听0.0.0.0和修改密码
 
 ```bash
 # 监听0.0.0.0
@@ -35,7 +40,7 @@ psql (9.6.10)
 输入 "help" 来获取帮助信息.
 
 postgres=# 
-postgres=# ALTER USER postgres WITH PASSWORD 'datatom.com';
+postgres=# ALTER USER postgres WITH PASSWORD 'admin123456';
 ALTER ROLE
 postgres=# 
 postgres=# \q
@@ -51,8 +56,3 @@ host    all             all             0.0.0.0/0                trust
 [root@testdbR data]# firewall-cmd --zone=public --add-port=5432/tcp --permanent
 [root@testdbR data]# firewall-cmd --reload
 ```
-
-
-
-
-

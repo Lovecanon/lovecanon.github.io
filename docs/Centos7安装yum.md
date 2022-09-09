@@ -1,21 +1,19 @@
----
-layout: post
-title: Centos7安装yum
-tags: [centos, yum, linux]
-description: "Centos7安装yum"
----
+<!-- 
+Date: 2020-07-05
+Title: 
+Tags: ["yum", "linux"]
+Category: Linux
+ -->
+# Centos7安装yum
 
-
-### Centos7安装yum
-
-##### 卸载yum（谨慎使用）
+## 卸载yum（谨慎使用）
 ```bash
 rpm -qa|grep yum|xargs rpm -ev --allmatches --nodeps
 whereis yum |xargs rm -frv
 whereis yum  # 验证是否删除
 ```
 
-##### 安装yum
+### 安装yum
 ```bash
 wget http://mirrors.aliyun.com/centos/7/os/x86_64/Packages/python-2.7.5-88.el7.x86_64.rpm
 wget http://mirrors.aliyun.com/centos/7/os/x86_64/Packages/python-iniparse-0.4-9.el7.noarch.rpm
@@ -47,7 +45,7 @@ enjoy！
 ```
 > 注意：`rpm -Uvh --replacepkgs python*.rpm`命令如果安装不成功需要添加：`--nodeps`选项即可！别说为什么，最后能用`yum`就行！
 
-##### 替换源
+### 替换源
 ```bash
 # 替换源
 mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
@@ -56,4 +54,3 @@ wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos
 # 生成缓存
 yum makecache
 ```
-
