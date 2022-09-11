@@ -4,7 +4,7 @@ Title:
 Tags: ["heroku", "linux"]
 Category: Linux
 -->
-# 2020-10-20-heroku部署flask程序.md
+# heroku部署flask程序.md
 ## 安装heroku-cli
 ```bash
 curl https://cli-assets.heroku.com/install.sh | sh

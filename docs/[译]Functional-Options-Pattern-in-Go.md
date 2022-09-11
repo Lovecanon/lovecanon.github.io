@@ -1,6 +1,6 @@
-<!-- 
+<!--
 Date: 2022-03-19
-Title: 
+Title:
 Tags: ["Golang"]
 Category: Golang
  -->
@@ -29,6 +29,7 @@ type stuffClient struct {
 }
 ```
 `stuffClient`结构体是私有的，我们可以提供一个构造函数：
+
 ```go
 func NewStuffClient(conn Connection, timeout, retries int) StuffClient {
     return &stuffClient{
@@ -216,7 +217,7 @@ func NewStuffClient(conn Connection, opts ...StuffClientOption) StuffClient {
     for _, o := range opts {
         o(&client)
     }
-    
+
     client.conn = conn
     return client
 }
