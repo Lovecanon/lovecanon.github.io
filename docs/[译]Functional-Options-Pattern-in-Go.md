@@ -228,3 +228,90 @@ func (c stuffClient) DoStuff() error {
 [Go Playground](https://play.golang.org/p/Z5P5Om4KDL)，运行看看！！这个例子中，我们直接将`WithXXX`的参数应用到`defaultStuffClient`默认客户端对象中，看样子并不需要额外的config结构体`StuffClientOptions`。其实不然，多数情况下我们依旧需要使用config结构体。举个栗子，如果你的构造函数使用配置选项来执行一些操作, 并不需要把它们存储到结构中, 或将其传递到其他地方。显然，config结构体的实现更加通用。
 
 最后，感谢[Rob Pike](https://commandcenter.blogspot.de/2014/01/self-referential-functions-and-design.html)和[Dave Cheney](https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)推广这种设计模式。
+
+## Functional Options Pattern应用（译者注）
+[digitalocean/godo](https://github.com/digitalocean/godo)
+
+godo库是DigitalOcean API的Go语言SDK，开发者无需自己编写HTTP请求代码，调用godo提供的方法即可。
+
+```go
+// file: godo.go
+// Client manages communication with DigitalOcean V2 API.
+// Client是SDK的核心对象，各种服务接口都可通过Client对象调用
+type Client struct {
+	// HTTP client used to communicate with the DO API.
+	client *http.Client
+
+	// Base URL for API requests.
+	BaseURL *url.URL
+
+	// User agent for client
+	UserAgent string
+
+	// Rate contains the current rate limit for the client as determined by the most recent
+	// API call. It is not thread-safe. Please consider using GetRate() instead.
+	Rate    Rate
+	ratemtx sync.Mutex
+
+	// Services used for communicating with the API
+    // 各类服务
+	Account           AccountService
+    // ...
+	Actions           ActionsService
+
+	// Optional function called after every successful request made to the DO APIs
+	onRequestCompleted RequestCompletionCallback
+
+	// Optional extra HTTP headers to set on every request to the API.
+	headers map[string]string
+}
+
+// ClientOpt are options for New.
+type ClientOpt func(*Client) error
+
+// New returns a new DigitalOcean API client instance.
+// 创建Client对象函数十分简单，修改Client对象成员值，可通过调用SetXXX()函数实现，也是本篇文章
+// 所说的Functional Options Pattern
+func New(httpClient *http.Client, opts ...ClientOpt) (*Client, error) {
+	c := NewClient(httpClient)
+	for _, opt := range opts {
+		if err := opt(c); err != nil {
+			return nil, err
+		}
+	}
+
+	return c, nil
+}
+
+// SetBaseURL is a client option for setting the base URL.
+func SetBaseURL(bu string) ClientOpt {
+	return func(c *Client) error {
+		u, err := url.Parse(bu)
+		if err != nil {
+			return err
+		}
+
+		c.BaseURL = u
+		return nil
+	}
+}
+
+// SetUserAgent is a client option for setting the user agent.
+func SetUserAgent(ua string) ClientOpt {
+	return func(c *Client) error {
+		c.UserAgent = fmt.Sprintf("%s %s", ua, c.UserAgent)
+		return nil
+	}
+}
+
+// SetRequestHeaders sets optional HTTP headers on the client that are
+// sent on each HTTP request.
+func SetRequestHeaders(headers map[string]string) ClientOpt {
+	return func(c *Client) error {
+		for k, v := range headers {
+			c.headers[k] = v
+		}
+		return nil
+	}
+}
+```
