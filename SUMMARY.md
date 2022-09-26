@@ -3,6 +3,7 @@
 [README](README.md)
 
 # Golang
+  - [codesign命令签名app报错](docs/codesign命令签名app报错.md)
   - [将Golang程序作为服务安装到MacOS、Windows、Linux系统中](docs/将Golang程序作为服务安装到MacOS、Windows、Linux系统中.md)
   - [[译]Functional-Options-Pattern-in-Go](docs/[译]Functional-Options-Pattern-in-Go.md)
 
@@ -13,4 +14,4 @@
   - [VIM配置](docs/VIM配置.md)
 
 # MISC
-  - [About Me](docs/about-me.md)
+  - [About Me](docs/AboutMe.md)
