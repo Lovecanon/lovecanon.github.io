@@ -51,5 +51,7 @@ xxx.app: signed app bundle with Mach-O thin (arm64) [com.xx.xxx]
 Root CA。果然，在系统根证书中可以找到Apple Root CA。这样就形成了完整的`信任链`。OS信任Apple Root CA，Apple Root
 CA颁发了G3，G3颁发了mac_development.cer。
 
-分析之后，开头说的证书不受信任的现象也就好理解了，因为信任链断了，颁发证书的机构G3，系统是不认识的。当安装G3证书后，信任链被连起来了。所以同事发过来的证书自动变成：此证书有效。
+回过头来，前文说的**证书不受信任**的现象也就好理解了，因为信任链断了，颁发证书的机构是G3，系统在本地找不到G3证书。当安装G3证书后，信任链被连起来了。所以同事发过来的证书自动变成：此证书有效。
+
+![CA Chain Of Trust](imgs/ca-chain-of-trust.png)
 
