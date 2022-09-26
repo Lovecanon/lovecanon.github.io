@@ -1,6 +1,6 @@
 # Lovecanon
 
-[README](README.md)
+[目录](SUMMARY.md)
 
 # Golang
   - [codesign命令签名app报错](docs/codesign命令签名app报错.md)
