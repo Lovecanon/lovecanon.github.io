@@ -4,6 +4,7 @@ Tags: ["mdbook", "linux", "github.io"]
 Category: Linux
 -->
 # mdbook发布到github.io并让Google搜索
+个人喜欢mdbook，因为它够简单、够纯粹，适合阅读，尤其是`Rust`主题配色。
 
 ## 通过Github Actions实现：提交后自动发布
 项目根目录下创建：`.github/workflows/deploy.yml`文件，
