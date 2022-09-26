@@ -1,6 +1,5 @@
 <!-- 
 Date: 2020-11-26
-Title:
 Tags: ["PostgreSQL", "linux"]
 Category: Linux
  -->

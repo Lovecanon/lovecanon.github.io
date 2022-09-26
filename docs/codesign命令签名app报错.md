@@ -1,6 +1,5 @@
 <!--
 Date: 2022-09-26
-Title:
 Tags: ["MacOS", "linux"]
 Category: Linux
  -->
@@ -54,4 +53,3 @@ CA颁发了G3，G3颁发了mac_development.cer。
 回过头来，前文说的**证书不受信任**的现象也就好理解了，因为信任链断了，颁发证书的机构是G3，系统在本地找不到G3证书。当安装G3证书后，信任链被连起来了。所以同事发过来的证书自动变成：此证书有效。
 
 ![CA Chain Of Trust](imgs/ca-chain-of-trust.png)
-

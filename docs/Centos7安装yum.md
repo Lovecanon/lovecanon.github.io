@@ -1,6 +1,5 @@
 <!-- 
 Date: 2020-07-05
-Title: 
 Tags: ["yum", "linux"]
 Category: Linux
  -->

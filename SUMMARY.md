@@ -1,6 +1,6 @@
 # Lovecanon
 
-[目录](SUMMARY.md)
+[文章目录](SUMMARY.md)
 
 # Golang
   - [codesign命令签名app报错](docs/codesign命令签名app报错.md)
@@ -8,6 +8,7 @@
   - [[译]Functional-Options-Pattern-in-Go](docs/[译]Functional-Options-Pattern-in-Go.md)
 
 # Linux
+  - [mdbook发布到github.io并让Google搜索](docs/mdbook发布到github.io并让Google搜索.md)
   - [Centos7-8安装postgresql9.6](docs/Centos7-8安装postgresql9.6.md)
   - [Centos7安装yum](docs/Centos7安装yum.md)
   - [heroku部署flask程序](docs/heroku部署flask程序.md)
