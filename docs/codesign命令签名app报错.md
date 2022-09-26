@@ -34,7 +34,7 @@ xxx.app: errSecInternalComponent
 
 大致是说：中间证书（Intermediate Certificate）过期，需要大伙更新证书。更新证书有两种方式：
 1. Xcode 11.4.1及以后的版本，Xcode会自动下载最新的中间证书
-2. 手动去页面中提到的[Certificate Authority page](https://www.apple.com/certificateauthority/)下载。因为同事打包的证书的颁发机构是：`G3`。在页面中找到这个证书下载、安装到本地电脑上即可，同事给的证书也变成了可信任的。
+2. 手动去页面中提到的[Certificate Authority page](https://www.apple.com/certificateauthority/)手动下载并安装。因为同事证书的颁发机构是：`G3`。在页面中找到这个证书下载、安装到本地电脑上，随之，本地中同事给的证书也变成了可信任的。
 
 重新尝试打包：
 ```bash
@@ -47,7 +47,7 @@ xxx.app: signed app bundle with Mach-O thin (arm64) [com.xx.xxx]
 ## 总结
 说到证书，有一个关键概念：`信任链`。浏览器不可能保存全世界所有网站的证书，因为太多了无法管理，而且这些证书每天都有新增、修改、删除。伟大计算机先贤的话再次被印证：“Any problem in computer science can be solved by another layer of indirection.”。原来浏览器直接与各个网站的证书关联，现在浏览器只与少数几家CA公司关联，CA公司与各个网站关联。意味着：浏览器信任CA机构，CA机构信任自己颁发的证书。
 
-同事发给我的证书：mac_development.cer，其颁发机构是：G3。对于G3这个机构，我们不知道它是否可信，因为在系统跟证书中没找到它。之后，我安装G3证书，G3证书的颁发机构是：Apple
+同事发给我的证书：mac_development.cer，其颁发机构是：G3。对于G3这个机构，我们不知道它是否可信，因为在系统跟证书中没找到它。之后，我下载安装G3证书，G3证书的颁发机构是：Apple
 Root CA。果然，在系统根证书中可以找到Apple Root CA。这样就形成了完整的`信任链`。OS信任Apple Root CA，Apple Root
 CA颁发了G3，G3颁发了mac_development.cer。
 
