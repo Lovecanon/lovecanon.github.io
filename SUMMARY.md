@@ -8,6 +8,7 @@
   - [[译]Functional-Options-Pattern-in-Go](docs/[译]Functional-Options-Pattern-in-Go.md)
 
 # Linux
+  - [关于证书文件](docs/关于证书文件.md)
   - [mdbook发布到github.io并让Google搜索](docs/mdbook发布到github.io并让Google搜索.md)
   - [Centos7-8安装postgresql9.6](docs/Centos7-8安装postgresql9.6.md)
   - [Centos7安装yum](docs/Centos7安装yum.md)
