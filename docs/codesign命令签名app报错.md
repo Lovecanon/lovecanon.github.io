@@ -18,6 +18,8 @@ IOS团队同事发过来三个证书：
 ```bash
 $ security find-identity -v -p codesigning
 
+# --sign 填写证书ID或证书「常用名称」都可以
+# --deep 递归签名app内嵌套的helpers, frameworks, and plug-ins包
 $ codesign --deep --force --verify --verbose --sign "066...A4" --entitlements entitlements.plist xxx.app
 xxx.app: replacing existing signature
 Warning: unable to build chain to self-signed root for signer "3rd Party Mac Developer Application: SHANGHAI  & TECH Co. LTD. (xxxxxx)"
@@ -43,6 +45,16 @@ xxx.app: replacing existing signature
 xxx.app: signed app bundle with Mach-O thin (arm64) [com.xx.xxx]
 ```
 
+## 注意
+签名成功之后，通过spctl命令签名状态，提示`xxx.app: rejected`，但不影响APP在别的机器上安装。
+
+```
+$ spctl --verbose --assess --type execute --v xxx.app
+xxx.app: rejected
+origin=3rd Party Mac...
+```
+如果需要APP通过签名检测，签名状态为accepted，你还需要通过`xcurn`工具进行公证[^xcrun]。
+
 ## 总结
 说到证书，有一个关键概念：`信任链`。浏览器不可能保存全世界所有网站的证书，因为太多了无法管理，而且这些证书每天都有新增、修改、删除。伟大计算机先贤的话再次被印证：“Any problem in computer science can be solved by another layer of indirection.”。原来浏览器直接与各个网站的证书关联，现在浏览器只与少数几家CA公司关联，CA公司与各个网站关联。意味着：浏览器信任CA机构，CA机构信任自己颁发的证书。
 
@@ -53,3 +65,6 @@ CA颁发了G3，G3颁发了mac_development.cer。
 回过头来，前文说的**证书不受信任**的现象也就好理解了，因为信任链断了，颁发证书的机构是G3，系统在本地找不到G3证书。当安装G3证书后，信任链被连起来了。所以同事发过来的证书自动变成：此证书有效。
 
 ![CA Chain Of Trust](imgs/ca-chain-of-trust.png)
+
+## 参考
+* [^xcrun]: [QT Mac app签名及公证](https://blog.csdn.net/shada/article/details/122704971)
