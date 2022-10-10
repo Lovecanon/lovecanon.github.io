@@ -40,6 +40,7 @@ xxx.app: errSecInternalComponent
 重新尝试打包：
 ```bash
 # 头秃了，一个周末两天都在解决这个问题，终于解决了。。。
+# --deep，bundle内所有能签名的Framework都会被分别签名
 $ codesign --deep --force --verify --verbose --sign "066...A4" --entitlements entitlements.plist xxx.app
 xxx.app: replacing existing signature
 xxx.app: signed app bundle with Mach-O thin (arm64) [com.xx.xxx]
@@ -68,3 +69,4 @@ CA颁发了G3，G3颁发了mac_development.cer。
 
 ## 参考
 * [^xcrun]: [QT Mac app签名及公证](https://blog.csdn.net/shada/article/details/122704971)
+* entitlements文件编写参考：[Entitlement Key Reference](https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/EntitlementKeyReference/Chapters/EnablingAppSandbox.html)
