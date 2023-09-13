@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>unit - css-tutorial</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../docs/advanced.html"><strong aria-hidden="true">1.</strong> advanced</a></li><li class="chapter-item expanded "><a href="../docs/animation.html"><strong aria-hidden="true">2.</strong> animation</a></li><li class="chapter-item expanded "><a href="../docs/background.html"><strong aria-hidden="true">3.</strong> background</a></li><li class="chapter-item expanded "><a href="../docs/block.html"><strong aria-hidden="true">4.</strong> block</a></li><li class="chapter-item expanded "><a href="../docs/color.html"><strong aria-hidden="true">5.</strong> color</a></li><li class="chapter-item expanded "><a href="../docs/component.html"><strong aria-hidden="true">6.</strong> component</a></li><li class="chapter-item expanded "><a href="../docs/display.html"><strong aria-hidden="true">7.</strong> display</a></li><li class="chapter-item expanded "><a href="../docs/feature.html"><strong aria-hidden="true">8.</strong> feature</a></li><li class="chapter-item expanded "><a href="../docs/font.html"><strong aria-hidden="true">9.</strong> font</a></li><li class="chapter-item expanded "><a href="../docs/function.html"><strong aria-hidden="true">10.</strong> function</a></li><li class="chapter-item expanded "><a href="../docs/image.html"><strong aria-hidden="true">11.</strong> image</a></li><li class="chapter-item expanded "><a href="../docs/intro.html"><strong aria-hidden="true">12.</strong> intro</a></li><li class="chapter-item expanded "><a href="../docs/media-query.html"><strong aria-hidden="true">13.</strong> media-query</a></li><li class="chapter-item expanded "><a href="../docs/operation.html"><strong aria-hidden="true">14.</strong> operation</a></li><li class="chapter-item expanded "><a href="../docs/position.html"><strong aria-hidden="true">15.</strong> position</a></li><li class="chapter-item expanded "><a href="../docs/properties.html"><strong aria-hidden="true">16.</strong> properties</a></li><li class="chapter-item expanded "><a href="../docs/responsive.html"><strong aria-hidden="true">17.</strong> responsive</a></li><li class="chapter-item expanded "><a href="../docs/transform.html"><strong aria-hidden="true">18.</strong> transform</a></li><li class="chapter-item expanded "><a href="../docs/unit.html" class="active"><strong aria-hidden="true">19.</strong> unit</a></li><li class="chapter-item expanded affix "><li class="part-title">advance</li><li class="chapter-item expanded "><a href="../docs/advance/print.html"><strong aria-hidden="true">20.</strong> print</a></li><li class="chapter-item expanded affix "><li class="part-title">feature</li><li class="chapter-item expanded "><a href="../docs/feature/counter.html"><strong aria-hidden="true">21.</strong> counter</a></li><li class="chapter-item expanded affix "><li class="part-title">images</li><li class="chapter-item expanded "><a href="../docs/images/*.html"><strong aria-hidden="true">22.</strong> </a></li><li class="chapter-item expanded affix "><li class="part-title">layout</li><li class="chapter-item expanded "><a href="../docs/layout/column.html"><strong aria-hidden="true">23.</strong> column</a></li><li class="chapter-item expanded "><a href="../docs/layout/flexbox.html"><strong aria-hidden="true">24.</strong> flexbox</a></li><li class="chapter-item expanded "><a href="../docs/layout/float.html"><strong aria-hidden="true">25.</strong> float</a></li><li class="chapter-item expanded "><a href="../docs/layout/grid.html"><strong aria-hidden="true">26.</strong> grid</a></li><li class="chapter-item expanded "><a href="../docs/layout/table.html"><strong aria-hidden="true">27.</strong> table</a></li><li class="chapter-item expanded affix "><li class="part-title">selectors</li><li class="chapter-item expanded "><a href="../docs/selectors/attribute.html"><strong aria-hidden="true">28.</strong> attribute</a></li><li class="chapter-item expanded "><a href="../docs/selectors/basic.html"><strong aria-hidden="true">29.</strong> basic</a></li><li class="chapter-item expanded "><a href="../docs/selectors/pseudo-class.html"><strong aria-hidden="true">30.</strong> pseudo-class</a></li><li class="chapter-item expanded affix "><li class="part-title">text</li><li class="chapter-item expanded "><a href="../docs/text/text-decoration.html"><strong aria-hidden="true">31.</strong> text-decoration</a></li><li class="chapter-item expanded "><a href="../docs/text/text.html"><strong aria-hidden="true">32.</strong> text</a></li><li class="chapter-item expanded "><a href="../docs/text/white-space.html"><strong aria-hidden="true">33.</strong> white-space</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">css-tutorial</h1>
+
+                    <div class="right-buttons">
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="css的单位"><a class="header" href="#css的单位">CSS的单位</a></h1>
+<h2 id="inherit"><a class="header" href="#inherit">inherit</a></h2>
+<p>大多数 CSS 属性默认继承它的父元素的设定，但是有一些属性默认不继承。比如，<code>input</code>元素和<code>textarea</code>元素的 CSS 属性，都是不继承父元素的。这时，可以强制它们继承。</p>
+<pre><code class="language-css">* {
+  font-family: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+html {
+  font-size: 125%;
+  font-family: sans-serif;
+  line-height: 1.5;
+  color: #222;
+}
+</code></pre>
+<p>上面代码中，首先强制所有元素的<code>font-family</code>、<code>line-height</code>和<code>color</code>属性都继承父元素，然后在网页的根元素<code>html</code>上设置具体的值。</p>
+<h2 id="em"><a class="header" href="#em">em</a></h2>
+<p><code>em</code>是一种相对单位，<code>1em</code>等于当前元素的<code>font-size</code>。一般来说，浏览器默认的字体大小是16像素，所以<code>1em</code>默认等于16像素。</p>
+<pre><code class="language-css">h1 { font-size: 20px } /* 1em = 20px */
+p { font-size: 16px } /* 1em = 16px */
+</code></pre>
+<p>上面代码中，对于<code>h1</code>元素，<code>1em</code>相当于<code>20px</code>；对于<code>p</code>元素，<code>1em</code>相当于<code>16px</code>。</p>
+<p>如果当前元素没有指定字体的像素大小，那么<code>1em</code>等于父元素字体的像素大小。这一点非常重要，务必牢记。</p>
+<pre><code class="language-css">html { font-size: 16px }
+h1 { font-size: 2em } /* 16px * 2 = 32px */
+</code></pre>
+<p>上面代码中，<code>h1</code>元素的字体大小是<code>2em</code>，但是它没有指定像素字体大小，因此<code>2em</code>等于2倍的父元素像素字体大小，也就是<code>32px</code>。</p>
+<p><code>em</code>的一大好处是，很容易保持不同元素之间的比例关系，因此它比像素单位更合适用来设定字体大小。</p>
+<pre><code class="language-css">html { font-size: 100%; }
+h1 { font-size: 2em; }
+p { font-size: 1em; }
+</code></pre>
+<p>上面代码中，<code>h1</code>的字体大小就是<code>p</code>的2倍。</p>
+<p>整个网页的字体大小，如果全部使用<code>em</code>单位，不使用像素单位，会引发一个问题。<code>em</code>将会基于父元素计算，从而出现累积效应。</p>
+<pre><code class="language-css">html { font-size: 100%; } /* 默认是 16px */
+div { font-size: 2em; } /* 字体大小 32px */
+p { font-size: 1em; } /* 字体大小 32px */
+</code></pre>
+<p>上面代码中，<code>html</code>是<code>div</code>的父元素，所以<code>div</code>的<code>1em</code>是基于<code>html</code>计算的，因此<code>2em</code>字体大小等于<code>32px</code>。另一方面，<code>div</code>是<code>p</code>的父元素，所以<code>p</code>的<code>1em</code>实际上也是<code>32px</code>。</p>
+<p>除了字体大小，其他许多属性也可以使用<code>em</code>，比如<code>margin</code>和<code>padding</code>，相当于间接由<code>font-size</code>决定。</p>
+<pre><code class="language-css">.header {
+  font-size: 16px;
+  padding: 0.5em 0.75em; /* 相当于 8px 12px */
+  background: #7F7CFF;
+}
+</code></pre>
+<p>上面代码中，<code>.header</code>元素的字体大小是<code>16px</code>，因此<code>1em</code>等于<code>16px</code>，所以<code>padding</code>就相当于<code>8px 12px</code>。</p>
+<p>这里比较混淆的是，如果<code>font-size</code>也使用<code>em</code>，两者的计算基点是不一样的。</p>
+<pre><code class="language-css">h1 {
+  font-size: 2em; /* 1em = 16px */
+  padding： 1em;  /* 1em = 32px */
+}
+</code></pre>
+<p>上面代码中，<code>font-size</code>是基于父元素计算的，如果父元素的字体大小是<code>16px</code>，那么<code>font-size</code>就是<code>32px</code>；<code>padding</code>是基于<code>font-size</code>计算的，由于<code>h1</code>的<code>font-size</code>是<code>32px</code>，所以<code>padding</code>就是<code>32px</code>。</p>
+<p>由于以上的累积效应和计算基点差异的原因，造成<code>em</code>不容易精确控制，实际开发中往往改用<code>rem</code>。</p>
+<h2 id="rem"><a class="header" href="#rem">rem</a></h2>
+<p><code>rem</code>单位与<code>em</code>几乎完全一致，只有一个差异，它总是等于根元素<code>&lt;html&gt;</code>的<code>font-size</code>大小，与当前元素或父元素的设置无关，这就避免了<code>em</code>的缺陷。</p>
+<pre><code class="language-css">h1 {
+  font-size: 2rem; /* 1rem = 16px */
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1rem; /* 1rem = 16px */
+  margin-bottom: 1rem;
+}
+</code></pre>
+<p>上面代码中，不管<code>&lt;h1&gt;</code>和<code>&lt;p&gt;</code>在什么位置，<code>1rem</code>的大小总是不变的。</p>
+<p>那么，何时使用<code>rem</code>，何时使用<code>em</code>呢？一个<a href="https://zellwk.com/blog/rem-vs-em/">规则</a>是字体大小<code>font-size</code>属性使用<code>rem</code>，其他必须等比例缩放的属性使用<code>em</code>。下面是一个例子。</p>
+<pre><code class="language-css">button {
+  font-size: 0.875rem;
+  padding: .5em 1em;
+  border: .125em solid #e3e3e3;
+  @media (min-width: 48rem){ /* min-width: 768px */
+    font-size: 1.125rem;
+  }
+  @media (min-width: 62rem){ /* min-width: 992px */
+    font-size: 1.375rem;
+  }
+}
+</code></pre>
+<p>上面代码中，随着屏幕宽度的变化，字体大小会跟着改变，<code>padding</code>和<code>border</code>会始终保持比例关系。</p>
+<h2 id="vhvw"><a class="header" href="#vhvw">vh，vw</a></h2>
+<p><code>vh</code>表示百分之一的浏览器视口高度，<code>vw</code>表示百分之一的浏览器视口宽度。每当视口的高度和宽度发生变化，它们就会自动重新计算。</p>
+<pre><code class="language-css">html { font-size: 3vw; }
+</code></pre>
+<p>上面代码中，如果视口宽度增加，字体大小也会增加；视口宽度减小，字体大小也会减小。但是，如果宽度太小（比如<code>320px</code>），这样算出来的字体会太小（<code>3px</code>）；如果宽度太大（比如<code>1440px</code>），字体又会太大（<code>43px</code>）。因此，可以考虑使用<code>calc</code>函数。</p>
+<pre><code class="language-css">html { font-size: calc(18px + 0.25vw); }
+</code></pre>
+<h2 id="vminvmax"><a class="header" href="#vminvmax">vmin，vmax</a></h2>
+<p><code>vmin</code>表示<code>vh</code>与<code>vw</code>之中较短的那个单位，<code>vmax</code>则表示较长的那个单位。</p>
+<p>一般来说，PC的屏幕是屏宽大于屏高，手机的屏幕是屏高大于屏宽。所以，很可能会出现，某一个区域在PC屏幕中宽度较小，在手机屏幕中宽度较大。这时，这两个单位就可以派上用处了。</p>
+<pre><code class="language-css">h1 {
+  font-size: 20vmin;
+}
+</code></pre>
+<p>注意，上面的<code>h1</code>使用<code>vmin</code>单位时，当宽屏设备的视口宽度缩小时，它的字体大小是不变的，因为视口的高度没有改变。</p>
+<h2 id="ch"><a class="header" href="#ch">ch</a></h2>
+<p><code>ch</code>表示多少个字符。</p>
+<pre><code class="language-css">width: 40ch;
+</code></pre>
+<p>上面代码表示宽度为40个字符。</p>
+<h2 id="calc"><a class="header" href="#calc">calc()</a></h2>
+<p>calc方法用于计算值，常用于两种不同的单位之间的计算（比如百分比和绝对长度）。</p>
+<p>实例1。每行放置4张图片，可以采用如下的代码。</p>
+<pre><code class="language-css">img {
+  float: left;
+  width: calc(25% - 20px);
+  margin: 10px;
+}
+</code></pre>
+<p>实例2。动态排列图片，可以配合media query。</p>
+<pre><code class="language-css">
+img {
+  float: left;
+  margin: 10px;
+  width: calc(100% * 1 / 4 - 20px);
+}
+
+@media (max-width: 900px) {
+  img {
+    width: calc(100% * 1 / 3 - 20px);
+  }
+}
+
+@media (max-width: 600px) {
+  img {
+    width: calc(100% * 1 / 2 - 20px);
+  }
+}
+
+@media (max-width: 400px) {
+  img {
+    width: calc(100% - 20px);
+  }
+}
+
+</code></pre>
+<h2 id="attr"><a class="header" href="#attr">attr()</a></h2>
+<p>attr()用于读取网页元素的属性值。</p>
+<pre><code class="language-css">div[data-line]:after { 
+	content: &quot;[line &quot; attr(data-line) &quot;]&quot;; 
+}
+</code></pre>
+<h2 id="参考链接"><a class="header" href="#参考链接">参考链接</a></h2>
+<ul>
+<li>Zell, <a href="http://zellwk.com/blog/rem-vs-em/">REM vs EM – The Great Debate</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../docs/transform.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../docs/advance/print.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../docs/transform.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../docs/advance/print.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>properties - css-tutorial</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../docs/advanced.html"><strong aria-hidden="true">1.</strong> advanced</a></li><li class="chapter-item expanded "><a href="../docs/animation.html"><strong aria-hidden="true">2.</strong> animation</a></li><li class="chapter-item expanded "><a href="../docs/background.html"><strong aria-hidden="true">3.</strong> background</a></li><li class="chapter-item expanded "><a href="../docs/block.html"><strong aria-hidden="true">4.</strong> block</a></li><li class="chapter-item expanded "><a href="../docs/color.html"><strong aria-hidden="true">5.</strong> color</a></li><li class="chapter-item expanded "><a href="../docs/component.html"><strong aria-hidden="true">6.</strong> component</a></li><li class="chapter-item expanded "><a href="../docs/display.html"><strong aria-hidden="true">7.</strong> display</a></li><li class="chapter-item expanded "><a href="../docs/feature.html"><strong aria-hidden="true">8.</strong> feature</a></li><li class="chapter-item expanded "><a href="../docs/font.html"><strong aria-hidden="true">9.</strong> font</a></li><li class="chapter-item expanded "><a href="../docs/function.html"><strong aria-hidden="true">10.</strong> function</a></li><li class="chapter-item expanded "><a href="../docs/image.html"><strong aria-hidden="true">11.</strong> image</a></li><li class="chapter-item expanded "><a href="../docs/intro.html"><strong aria-hidden="true">12.</strong> intro</a></li><li class="chapter-item expanded "><a href="../docs/media-query.html"><strong aria-hidden="true">13.</strong> media-query</a></li><li class="chapter-item expanded "><a href="../docs/operation.html"><strong aria-hidden="true">14.</strong> operation</a></li><li class="chapter-item expanded "><a href="../docs/position.html"><strong aria-hidden="true">15.</strong> position</a></li><li class="chapter-item expanded "><a href="../docs/properties.html" class="active"><strong aria-hidden="true">16.</strong> properties</a></li><li class="chapter-item expanded "><a href="../docs/responsive.html"><strong aria-hidden="true">17.</strong> responsive</a></li><li class="chapter-item expanded "><a href="../docs/transform.html"><strong aria-hidden="true">18.</strong> transform</a></li><li class="chapter-item expanded "><a href="../docs/unit.html"><strong aria-hidden="true">19.</strong> unit</a></li><li class="chapter-item expanded affix "><li class="part-title">advance</li><li class="chapter-item expanded "><a href="../docs/advance/print.html"><strong aria-hidden="true">20.</strong> print</a></li><li class="chapter-item expanded affix "><li class="part-title">feature</li><li class="chapter-item expanded "><a href="../docs/feature/counter.html"><strong aria-hidden="true">21.</strong> counter</a></li><li class="chapter-item expanded affix "><li class="part-title">images</li><li class="chapter-item expanded "><a href="../docs/images/*.html"><strong aria-hidden="true">22.</strong> </a></li><li class="chapter-item expanded affix "><li class="part-title">layout</li><li class="chapter-item expanded "><a href="../docs/layout/column.html"><strong aria-hidden="true">23.</strong> column</a></li><li class="chapter-item expanded "><a href="../docs/layout/flexbox.html"><strong aria-hidden="true">24.</strong> flexbox</a></li><li class="chapter-item expanded "><a href="../docs/layout/float.html"><strong aria-hidden="true">25.</strong> float</a></li><li class="chapter-item expanded "><a href="../docs/layout/grid.html"><strong aria-hidden="true">26.</strong> grid</a></li><li class="chapter-item expanded "><a href="../docs/layout/table.html"><strong aria-hidden="true">27.</strong> table</a></li><li class="chapter-item expanded affix "><li class="part-title">selectors</li><li class="chapter-item expanded "><a href="../docs/selectors/attribute.html"><strong aria-hidden="true">28.</strong> attribute</a></li><li class="chapter-item expanded "><a href="../docs/selectors/basic.html"><strong aria-hidden="true">29.</strong> basic</a></li><li class="chapter-item expanded "><a href="../docs/selectors/pseudo-class.html"><strong aria-hidden="true">30.</strong> pseudo-class</a></li><li class="chapter-item expanded affix "><li class="part-title">text</li><li class="chapter-item expanded "><a href="../docs/text/text-decoration.html"><strong aria-hidden="true">31.</strong> text-decoration</a></li><li class="chapter-item expanded "><a href="../docs/text/text.html"><strong aria-hidden="true">32.</strong> text</a></li><li class="chapter-item expanded "><a href="../docs/text/white-space.html"><strong aria-hidden="true">33.</strong> white-space</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">css-tutorial</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="css-属性"><a class="header" href="#css-属性">CSS 属性</a></h1>
+<h2 id="inherit属性值"><a class="header" href="#inherit属性值"><code>inherit</code>属性值</a></h2>
+<p>CSS 的许多属性可以继承，即子元素默认继承父元素的属性。比如，<code>body</code>元素的字体样式，可以被页面的所有元素继承。</p>
+<pre><code class="language-css">body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+</code></pre>
+<p>上面代码中，<code>body</code>设置了<code>font-family</code>了，它的后代元素就不用设置这个属性了，除非需要改变字体。</p>
+<p>根据标准，以下 CSS 属性可以继承。</p>
+<ol>
+<li><code>azimuth</code></li>
+<li><code>border-collapse</code></li>
+<li><code>border-spacing</code></li>
+<li><code>caption-side</code></li>
+<li><code>color</code></li>
+<li><code>cursor</code></li>
+<li><code>direction</code></li>
+<li><code>elevation</code></li>
+<li><code>empty-cells</code></li>
+<li><code>font-family</code></li>
+<li><code>font-size</code></li>
+<li><code>font-style</code></li>
+<li><code>font-variant</code></li>
+<li><code>font-weight</code></li>
+<li><code>font</code></li>
+<li><code>letter-spacing</code></li>
+<li><code>line-height</code></li>
+<li><code>list-style-image</code></li>
+<li><code>list-style-position</code></li>
+<li><code>list-style-type</code></li>
+<li><code>list-style</code></li>
+<li><code>orphans</code></li>
+<li><code>pitch-range</code></li>
+<li><code>pitch</code></li>
+<li><code>quotes</code></li>
+<li><code>richness</code></li>
+<li><code>speak-header</code></li>
+<li><code>speak-numeral</code></li>
+<li><code>speak-punctuation</code></li>
+<li><code>speak</code></li>
+<li><code>speech-rate</code></li>
+<li><code>stress</code></li>
+<li><code>text-align</code></li>
+<li><code>text-indent</code></li>
+<li><code>text-transform</code></li>
+<li><code>visibility</code></li>
+<li><code>voice-family</code></li>
+<li><code>volume</code></li>
+<li><code>white-space</code></li>
+<li><code>widows</code></li>
+<li><code>word-spacing</code></li>
+</ol>
+<p>其他属性默认不能继承，比如<code>border</code>属性。父元素设置了<code>border</code>以后，子元素如果要有边框，必须重新设一遍。</p>
+<pre><code class="language-css">.main-list {
+  border: 1rem solid #000;
+  color: red;
+  font-family: Verdana
+}
+
+.sub-list {
+  border: 1rem solid #000;
+}
+</code></pre>
+<p>上面代码中，<code>.sum-list</code>是<code>.main-list</code>的子元素，两者的边框必须各自设置。</p>
+<p>CSS 提供了<code>inherit</code>属性值，如果要让子元素继承父元素的属性，可以使用这个属性值。</p>
+<pre><code class="language-css">.main-list {
+  border: 1rem solid #000;
+  color: red;
+  font-family: Verdana;
+}
+
+.sub-list {
+  border: inherit;
+}
+</code></pre>
+<p>上面代码中，<code>.sub-list</code>的<code>border</code>属性，就继承了<code>.main-list</code>，从而两者的边框都一样。它的好处是，如果要修改边框，只要修改一处即可。</p>
+<h2 id="initial-属性值"><a class="header" href="#initial-属性值">initial 属性值</a></h2>
+<p><code>initial</code>属性值可以将 CSS 属性设回初始值。它的主要用处是，让那些默认继承父元素的 CSS 属性不再继承，回到初始值。</p>
+<pre><code class="language-css">.berries {
+  border: 1rem solid #000;
+  color: red;
+  font-family: Verdana;
+  margin-bottom: 10px;
+}
+
+.berries h1 {
+  color: initial;
+}
+</code></pre>
+<p>上面代码中，<code>.berries</code>是<code>h1</code>的父元素，而<code>color</code>属性是可以继承的，如果不设置<code>h1</code>的颜色，<code>h1</code>就会是红色的。现在<code>h1</code>的<code>color</code>设为<code>initial</code>，就不再继承父元素的颜色，而是回到浏览器给予<code>h1</code>的默认颜色，即黑色。</p>
+<h2 id="unset-属性值"><a class="header" href="#unset-属性值">unset 属性值</a></h2>
+<p><code>unset</code>属性值的作用是，如果存在继承，则继承父元素的值（等同于<code>inherit</code>），如果不存在继承，则重置为初始值（等同于<code>initial</code>）。<code>unset</code>的意思，就是去除当前样式表对该元素的样式设置。</p>
+<pre><code class="language-css">h1 {
+  color: blue;
+}
+
+div {
+  border: 1rem solid #000;
+  color: red;
+  font-family: Verdana;
+  margin-bottom: 10px;
+}
+
+.berries h1 {
+  color: unset;
+}
+</code></pre>
+<p>上面代码中，<code>div</code>是<code>h1</code>的父元素，如果不设置<code>.berries h1</code>的<code>color</code>属性，<code>h1</code>会显示为蓝色，设成<code>color: unset</code>以后，<code>h1</code>继承了父元素的<code>color</code>，显示为红色。</p>
+<p><code>unset</code>与<code>inherit</code>的区别在于，如果不设置<code>div</code>的<code>color</code>，那么<code>.berries h1</code>将显示为浏览器赋予的默认颜色（黑色），而不是红色。</p>
+<pre><code class="language-css">h1 {
+  color: blue;
+}
+
+div {
+  border: 1rem solid #000;
+  font-family: Verdana;
+  margin-bottom: 10px;
+}
+
+.berries h1 {
+  color: unset;
+}
+</code></pre>
+<p>上面代码中，父元素<code>div</code>没有设置颜色，这时子元素<code>.berries h1</code>将显示为浏览器默认颜色（黑色），而不是蓝色。</p>
+<h2 id="revert-属性值"><a class="header" href="#revert-属性值">revert 属性值</a></h2>
+<p><code>revert</code>属性值用于消除当前样式表对该元素设置的样式，这也是它名字的含义（<code>还原</code>），基本等同于<code>unset</code>。具体来说，如果存在继承，该元素会显示继承的属性值，如果不存在继承，则分成以下两种情况。</p>
+<ul>
+<li><code>revert</code>用在网站提供的样式表：则显示用户演示表设置的值。如果不存在用户样式表，则浏览器赋予的默认值。</li>
+<li><code>revert</code>用在用户提供的样式表：显示浏览器赋予的默认值。</li>
+</ul>
+<p>我们知道，样式表可以分成三层：用户提供的样式表，可以覆盖网站提供的样式表；网站提供的样式表，又可以覆盖浏览器的默认样式表。<code>revert</code>主要针对的就是多层样式表同时存在的情况，然后用于去除本层样式表对元素的影响。</p>
+<p>大多数情况下，<code>revert</code>与<code>unset</code>是一样的，主要差异是 CSS 属性的初始值与浏览器的默认值可能有差异。</p>
+<pre><code class="language-html">&lt;h3 style=&quot;font-weight: unset;&quot;&gt;hello&lt;/h3&gt;
+&lt;h3 style=&quot;font-weight: revert;&quot;&gt;hello&lt;/h3&gt;
+</code></pre>
+<p>上面代码中，<code>font-weight: unset</code>会回到<code>font-weight</code>的初始值，即<code>normal</code>。而<code>&lt;font-weight: revert&gt;</code>会回到浏览器对<code>h3</code>的<code>font-weight</code>默认值，一般是粗体。</p>
+<p>如果想要清除当前样式表对该元素的所有设置，可以使用<code>all: revert</code>。</p>
+<pre><code class="language-html">&lt;h3 style=&quot;all: revert;&quot;&gt;hello&lt;/h3&gt;
+</code></pre>
+<h2 id="background-blend-mode"><a class="header" href="#background-blend-mode">background-blend-mode</a></h2>
+<p>background-blend-mode属性指定背景的颜色混合模式，共有16个值可取：normal（默认值，即不混合）, multiply, screen, overlay, darken, lighten, color-dodge, color-burn, hard-light, soft-light, difference, exclusion, hue, saturation, color and luminosity（显示单色效果）。</p>
+<p>可以显示多张背景图片的混合，或者背景图片与背景色的混合。</p>
+<pre><code class="language-javascript">  background-image: url(...g);
+  background-color: #51B7D3;
+  background-blend-mode: luminosity;
+</code></pre>
+<h2 id="background-image"><a class="header" href="#background-image">background-image</a></h2>
+<p><code>background</code>属性可以同时指定背景图和背景颜色。</p>
+<pre><code class="language-css">body {
+  background: url(sweettexture.jpg) blue;
+}
+</code></pre>
+<h2 id="background-position"><a class="header" href="#background-position">background-position</a></h2>
+<p><code>background-position</code>指定背景图的位置。</p>
+<pre><code class="language-css">background-position: 100px 5px;
+</code></pre>
+<p>位置属性可以指定关键字。</p>
+<ul>
+<li>top</li>
+<li>right</li>
+<li>bottom</li>
+<li>left</li>
+<li>center</li>
+</ul>
+<h2 id="background-blend-mode-1"><a class="header" href="#background-blend-mode-1">background-blend-mode</a></h2>
+<p><code>background-blend-mode</code>用于指定两种颜色混合的方式。</p>
+<pre><code class="language-css">div {
+  background: url(img/pattern.png), url(img/jellyfish.jpg), #f07e32;
+  background-blend-mode: screen;
+}
+</code></pre>
+<p>Demo：http://codepen.io/tutsplus/live/wMvoyj</p>
+<p>教程：http://webdesign.tutsplus.com/tutorials/blending-modes-in-css-color-theory-and-practical-application--cms-25201</p>
+<h2 id="border-image"><a class="header" href="#border-image">border-image</a></h2>
+<p>在边框上显示图像。</p>
+<h2 id="content"><a class="header" href="#content">content</a></h2>
+<p>指定伪元素的内容。</p>
+<pre><code class="language-css">.myDiv:after {
+  content: &quot;I am hardcoded text from the *content* property&quot;;
+}
+
+div[data-line]:after {
+  content: attr(data-line); /* 属性名没有引号 */
+}
+
+div[data-line]:after {
+  content: &quot;[line &quot; attr(data-line) &quot;]&quot;;
+}
+
+</code></pre>
+<h2 id="counter"><a class="header" href="#counter">counter</a></h2>
+<p>counter用来实现计数器。</p>
+<pre><code class="language-html">&lt;ol class=&quot;list&quot;&gt;
+    &lt;li&gt;a&lt;/li&gt;
+    &lt;li&gt;b&lt;/li&gt;
+    &lt;li&gt;c&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+<p><code>li</code>元素前面添加计数器的代码如下。</p>
+<pre><code class="language-css">.list {
+    counter-reset: i; //reset conunter
+}
+.list &gt; li {
+    counter-increment: i; //counter ID
+}
+.list li:after {
+    content: &quot;[&quot; counter(i) &quot;]&quot;; //print the result
+}
+</code></pre>
+<p>下面是一个高级用法的例子。</p>
+<pre><code class="language-html">&lt;div class=&quot;numbers&quot;&gt;  
+  &lt;input id=&quot;one&quot; type=&quot;checkbox&quot;&gt;&lt;label for=&quot;one&quot;&gt;1&lt;/label&gt;
+  &lt;input id=&quot;two&quot; type=&quot;checkbox&quot;&gt;&lt;label for=&quot;two&quot;&gt;2&lt;/label&gt;
+  &lt;input id=&quot;three&quot; type=&quot;checkbox&quot;&gt;&lt;label for=&quot;three&quot;&gt;3&lt;/label&gt;
+  &lt;input id=&quot;four&quot; type=&quot;checkbox&quot;&gt;&lt;label for=&quot;four&quot;&gt;4&lt;/label&gt;
+  &lt;input id=&quot;five&quot; type=&quot;checkbox&quot;&gt;&lt;label for=&quot;five&quot;&gt;5&lt;/label&gt;
+  &lt;input id=&quot;one-hundred&quot; type=&quot;checkbox&quot;&gt;&lt;label for=&quot;one-hundred&quot;&gt;100&lt;/label&gt;
+&lt;/div&gt;  
+&lt;p class=&quot;sum&quot;&gt;  
+  Sum 
+&lt;/p&gt;  
+</code></pre>
+<p>然后，利用计数器做出一个累加计算器。</p>
+<pre><code class="language-css">.numbers {
+  counter-reset: sum;
+}
+
+#one:checked { counter-increment: sum 1; }
+#two:checked { counter-increment: sum 2; }
+#three:checked { counter-increment: sum 3; }
+#four:checked { counter-increment: sum 4; }
+#five:checked { counter-increment: sum 5; }
+#one-hundred:checked { counter-increment: sum 100; }
+
+.sum::after {
+  content: '= ' counter(sum);
+}
+</code></pre>
+<h2 id="cursor"><a class="header" href="#cursor">cursor</a></h2>
+<p><code>cousor</code>属性用来指定鼠标形状。</p>
+<pre><code class="language-css">.cursor_auto {
+    cursor: auto;
+}
+
+.cursor_default {
+    cursor: default;
+}
+
+.cursor_none {
+    cursor: none;
+}
+
+.cursor_pointer {
+    cursor: pointer;
+}
+
+.cursor_progress {
+    cursor: progress;
+}
+
+.cursor_help {
+    cursor: help;
+}
+
+.cursor_text {
+    cursor: text;
+}
+
+.cursor_cell {
+    cursor: cell;
+}
+
+.cursor_crosshair {
+    cursor: crosshair;
+}
+
+.cursor_alias {
+    cursor: alias;
+}
+
+.cursor_context-menu {
+    cursor: context-menu;
+}
+
+.cursor_vertical-text {
+    cursor: vertical-text;
+}  /*not compatible with opera*/
+
+.cursor_copy {
+    cursor: copy;
+}
+
+.cursor_move {
+    cursor: move;
+}
+
+.cursor_no-drop {
+    cursor: no-drop;
+}  /*not compatible with opera*/
+
+.cursor_not-allowed {
+    cursor: not-allowed;
+}  /*not compatible with opera*/
+
+.cursor_all-scroll {
+    cursor: all-scroll;
+}  /*not compatible with opera*/
+
+.cursor_col-resize {
+    cursor: col-resize;
+}  /*not compatible with opera*/
+
+.cursor_row-resize {
+    cursor: row-resize;
+}  /*not compatible with opera*/
+
+.cursor_nesw-resize {
+    cursor: nesw-resize;
+}
+.cursor_nwse-resize {
+    cursor: nwse-resize;
+}
+
+.cursor_n-resize {
+    cursor: n-resize;
+}
+
+.cursor_e-resize {
+    cursor: e-resize;
+}
+
+.cursor_s-resize {
+    cursor: s-resize;
+}
+
+.cursor_w-resize {
+    cursor: w-resize;
+}
+
+.cursor_ns-resize {
+    cursor: ns-resize;
+}
+
+.cursor_ew-resize {
+    cursor: ew-resize;
+}
+
+.cursor_ne-resize {
+    cursor: ne-resize;
+}
+
+.cursor_nw-resize {
+    cursor: nw-resize;
+}
+
+.cursor_sw-resize {
+    cursor: sw-resize;
+}
+
+.cursor_se-resize {
+    cursor: se-resize;
+}
+
+.cursor_wait {
+    cursor: wait;
+}
+
+.cursor_grab {
+    cursor: grab;
+}  /*only compatible with firefox and opera*/
+
+.cursor_grabbing {
+    cursor: grabbing;
+}  /*only compatible with firefox and opera*/
+
+.cursor_zoom-in {
+    cursor: zoom-in;
+}  /*not compatible with explorer*/
+
+.cursor_zoom-out {
+    cursor: zoom-out;
+}  /*not compatible with explorer*/
+
+.cursor_custom {
+    cursor: url(image.gif), url(image.cur), auto;
+}
+</code></pre>
+<h2 id="display"><a class="header" href="#display">display</a></h2>
+<p>display属性表示如何展示元素。</p>
+<pre><code class="language-css">display: block;
+display: flex;
+</code></pre>
+<h3 id="filter"><a class="header" href="#filter">filter</a></h3>
+<p>filter属性表示图片滤镜，支持grayscale, blur, sepia, saturate, opacity, brightness, contrast, hue-rotate, invert效果。</p>
+<p>灰度效果。</p>
+<pre><code class="language-css">
+img.bw {
+  filter: grayscale(1);
+}
+
+</code></pre>
+<p>动画效果。</p>
+<pre><code class="language-css">
+img.bw {
+	filter: grayscale(0);
+}
+
+img.bw.grey {
+	filter: grayscale(1);
+	transition-property: filter;
+	transition-duration: 1s;	
+}
+
+</code></pre>
+<p>其他例子。</p>
+<pre><code class="language-css">
+/* 模糊 */
+.myElement {
+	-webkit-filter: blur(2px);
+}
+
+/* 组合效果 */
+.myElement {
+	-webkit-filter: blur(2px) grayscale(.5) opacity(0.8);
+}
+
+</code></pre>
+<p>模糊与鼠标悬停效果相结合。</p>
+<pre><code class="language-css">.spoiler {
+	-webkit-filter: blur(20px);
+	-webkit-transition-property: -webkit-filter;
+	-webkit-transition-duration: .4s;
+}
+.spoiler:hover, .spoiler:focus {
+	-webkit-filter: blur(0px);
+}
+</code></pre>
+<h2 id="flex"><a class="header" href="#flex">flex</a></h2>
+<p>flex功能可以指定容器采用弹性布局。</p>
+<pre><code class="language-css">div{
+  display: flex;
+}
+</code></pre>
+<h2 id="filter-1"><a class="header" href="#filter-1">filter</a></h2>
+<p>filter属性在指定元素上应用滤镜。</p>
+<ul>
+<li>blur()：模糊，参数为模糊半径</li>
+<li>brightness()：亮度，0%为全黑，100%为原始亮度</li>
+<li>contrast()：对比度，0%为全黑，100%为原始对比度</li>
+<li>grayscale()：灰度，0%为原始色彩，100%为完全灰度。</li>
+<li>hue-rotate()：色调，0为原始色调，360为色彩轮旋转一周后回到原色调。</li>
+<li>invert()：负片效果，0%为原始效果，100%为完全负片效果。</li>
+<li>opacity()：透明度，0%为完全透明，100%为完全不透明。</li>
+<li>saturate()：饱和度，0%为完全不饱和，100%为完全饱和。</li>
+<li>sepia()：作旧效果，0%为原始效果，100%为完全作旧</li>
+<li>drop-shadow()：阴影效果，设置同box-shadow接近</li>
+<li>url()：引用定义在SVG文件中的滤镜</li>
+</ul>
+<p>多个滤镜可以联合使用。</p>
+<pre><code class="language-css">filter: sepia(1) brightness(150%) contrast(0.5);
+</code></pre>
+<h2 id="mix-blend-mode"><a class="header" href="#mix-blend-mode">mix-blend-mode</a></h2>
+<p>mix-blend-mode属性指定前景与背景的颜色混合模式，即前景色与背景色的混合。它的取值同background-blend-mode属性一样，也是16个值。</p>
+<h2 id="object-fit"><a class="header" href="#object-fit">object-fit</a></h2>
+<p>定义内容如何适应容器的高和宽，比如不同大小的图片，如何放在同一个位置。</p>
+<pre><code class="language-css">img {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+}
+</code></pre>
+<p>object-fit可能的值共有五个。</p>
+<pre><code class="language-css">object-fit: fill
+object-fit: contain
+object-fit: cover
+object-fit: none
+object-fit: scale-down
+</code></pre>
+<ul>
+<li>contain：图片自动升缩，以固有的长宽比，完整显示在容器中。</li>
+<li>fill：图片自动填满容器，即使破坏原有的长宽比。</li>
+<li>cover：保留图像的长宽比，但会自动升缩以填满容器，长度或宽度中较小的一个会完全在容器中展示，较大的一个会溢出。</li>
+<li>none：完全忽视容器的大小，使用图片固有的长宽比。</li>
+<li>scale-down: none或者contain中导致图片尺寸较小的那个值。</li>
+</ul>
+<p>cover表示自动将图像的中心点，放置到容器的中心点，同时根据容器的大小，截取自身的大小。</p>
+<pre><code class="language-css">
+img {
+  object-fit: cover;
+}
+
+</code></pre>
+<p>参考链接</p>
+<ul>
+<li>MDN, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit">object-fit</a></li>
+<li>Chris Nager, <a href="https://medium.com/@chrisnager/center-and-crop-images-with-a-single-line-of-css-ad140d5b4a87">Center and crop images with a single line of CSS</a></li>
+<li>Chris Mills, <a href="https://hacks.mozilla.org/2015/02/exploring-object-fit/">Exploring object-fit</a></li>
+</ul>
+<h2 id="object-position"><a class="header" href="#object-position">object-position</a></h2>
+<p>object-position设置容器中的对象（通常是图片）的垂直和水平位置，与background-position设置背景图片的写法相同。</p>
+<pre><code class="language-css">
+img {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+  object-position: top 70px;
+}
+
+</code></pre>
+<h2 id="pointer-events"><a class="header" href="#pointer-events">pointer-events</a></h2>
+<p>该属性定义当前图形对象会不会成为鼠标动作的目标。</p>
+<pre><code class="language-css">/* 图片将对鼠标行为无反应 */
+img {
+  pointer-events: none;
+}
+
+a[href=&quot;http://example.com&quot;] {
+  pointer-events: none;
+}
+</code></pre>
+<p>一旦pointer-events设为none，就不会触发JavaScript事件。在该元素上点击，任何addEventListener添加的回调函数，都不会触发。</p>
+<h2 id="text-overflow"><a class="header" href="#text-overflow">text-overflow</a></h2>
+<p>该属性定义了文本超出容器宽度后，如何处理。如果将多余文字显示成三点的省略号，可以像下面这样设置。</p>
+<pre><code class="language-css">.ellipsis {
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+</code></pre>
+<p>上面代码第一行是隐藏溢出，第二行是防止断行，第三行是在行尾加上省略号。</p>
+<h2 id="position"><a class="header" href="#position">position</a></h2>
+<p>position属性用来确定元素的定位。</p>
+<pre><code class="language-css">position: relative;
+position: sticky;
+position: absolute;
+position: fixed;
+</code></pre>
+<h2 id="transition"><a class="header" href="#transition">transition</a></h2>
+<pre><code class="language-css">/* Format */
+transition: property || duration || timing-function || delay
+
+/* Various Examples */
+transition: all 300ms ease 0;
+transition: all 0.5s ease-in-out 0;
+transition: background 300ms cubic-bezier(.61,-0.67,0,1.45) 0;
+transition: opacity 100ms ease 0, background 200ms ease-in-out 0, transform 200ms ease-out 0;
+
+/* Cross Browser Prefixes */
+-webkit-transition: all 300ms ease 0;
+-moz-transition: all 300ms ease 0;
+-o-transition: all 300ms ease 0;
+transition: all 300ms ease 0;
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../docs/position.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../docs/responsive.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../docs/position.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../docs/responsive.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

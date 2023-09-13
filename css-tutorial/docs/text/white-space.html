@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>white-space - css-tutorial</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../docs/advanced.html"><strong aria-hidden="true">1.</strong> advanced</a></li><li class="chapter-item expanded "><a href="../../docs/animation.html"><strong aria-hidden="true">2.</strong> animation</a></li><li class="chapter-item expanded "><a href="../../docs/background.html"><strong aria-hidden="true">3.</strong> background</a></li><li class="chapter-item expanded "><a href="../../docs/block.html"><strong aria-hidden="true">4.</strong> block</a></li><li class="chapter-item expanded "><a href="../../docs/color.html"><strong aria-hidden="true">5.</strong> color</a></li><li class="chapter-item expanded "><a href="../../docs/component.html"><strong aria-hidden="true">6.</strong> component</a></li><li class="chapter-item expanded "><a href="../../docs/display.html"><strong aria-hidden="true">7.</strong> display</a></li><li class="chapter-item expanded "><a href="../../docs/feature.html"><strong aria-hidden="true">8.</strong> feature</a></li><li class="chapter-item expanded "><a href="../../docs/font.html"><strong aria-hidden="true">9.</strong> font</a></li><li class="chapter-item expanded "><a href="../../docs/function.html"><strong aria-hidden="true">10.</strong> function</a></li><li class="chapter-item expanded "><a href="../../docs/image.html"><strong aria-hidden="true">11.</strong> image</a></li><li class="chapter-item expanded "><a href="../../docs/intro.html"><strong aria-hidden="true">12.</strong> intro</a></li><li class="chapter-item expanded "><a href="../../docs/media-query.html"><strong aria-hidden="true">13.</strong> media-query</a></li><li class="chapter-item expanded "><a href="../../docs/operation.html"><strong aria-hidden="true">14.</strong> operation</a></li><li class="chapter-item expanded "><a href="../../docs/position.html"><strong aria-hidden="true">15.</strong> position</a></li><li class="chapter-item expanded "><a href="../../docs/properties.html"><strong aria-hidden="true">16.</strong> properties</a></li><li class="chapter-item expanded "><a href="../../docs/responsive.html"><strong aria-hidden="true">17.</strong> responsive</a></li><li class="chapter-item expanded "><a href="../../docs/transform.html"><strong aria-hidden="true">18.</strong> transform</a></li><li class="chapter-item expanded "><a href="../../docs/unit.html"><strong aria-hidden="true">19.</strong> unit</a></li><li class="chapter-item expanded affix "><li class="part-title">advance</li><li class="chapter-item expanded "><a href="../../docs/advance/print.html"><strong aria-hidden="true">20.</strong> print</a></li><li class="chapter-item expanded affix "><li class="part-title">feature</li><li class="chapter-item expanded "><a href="../../docs/feature/counter.html"><strong aria-hidden="true">21.</strong> counter</a></li><li class="chapter-item expanded affix "><li class="part-title">images</li><li class="chapter-item expanded "><a href="../../docs/images/*.html"><strong aria-hidden="true">22.</strong> </a></li><li class="chapter-item expanded affix "><li class="part-title">layout</li><li class="chapter-item expanded "><a href="../../docs/layout/column.html"><strong aria-hidden="true">23.</strong> column</a></li><li class="chapter-item expanded "><a href="../../docs/layout/flexbox.html"><strong aria-hidden="true">24.</strong> flexbox</a></li><li class="chapter-item expanded "><a href="../../docs/layout/float.html"><strong aria-hidden="true">25.</strong> float</a></li><li class="chapter-item expanded "><a href="../../docs/layout/grid.html"><strong aria-hidden="true">26.</strong> grid</a></li><li class="chapter-item expanded "><a href="../../docs/layout/table.html"><strong aria-hidden="true">27.</strong> table</a></li><li class="chapter-item expanded affix "><li class="part-title">selectors</li><li class="chapter-item expanded "><a href="../../docs/selectors/attribute.html"><strong aria-hidden="true">28.</strong> attribute</a></li><li class="chapter-item expanded "><a href="../../docs/selectors/basic.html"><strong aria-hidden="true">29.</strong> basic</a></li><li class="chapter-item expanded "><a href="../../docs/selectors/pseudo-class.html"><strong aria-hidden="true">30.</strong> pseudo-class</a></li><li class="chapter-item expanded affix "><li class="part-title">text</li><li class="chapter-item expanded "><a href="../../docs/text/text-decoration.html"><strong aria-hidden="true">31.</strong> text-decoration</a></li><li class="chapter-item expanded "><a href="../../docs/text/text.html"><strong aria-hidden="true">32.</strong> text</a></li><li class="chapter-item expanded "><a href="../../docs/text/white-space.html" class="active"><strong aria-hidden="true">33.</strong> white-space</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">css-tutorial</h1>
+
+                    <div class="right-buttons">
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="空格"><a class="header" href="#空格">空格</a></h1>
+<h2 id="一基本规则"><a class="header" href="#一基本规则">一、基本规则</a></h2>
+<p>HTML 代码的空格通常会被浏览器忽略。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201807/bg2018073106.jpg" alt="" /></p>
+<pre><code class="language-html">&lt;p&gt;◡◡hello◡◡world◡◡&lt;/p&gt;
+</code></pre>
+<p>上面是一行 HTML 代码，文字的前部、内部和后部各有两个空格。为了便于识别，这里使用半圆形符号<code>◡</code>表示空格。</p>
+<p>浏览器的输出结果如下。</p>
+<pre><code class="language-html">hello world
+</code></pre>
+<p>可以看到，文字的前部和后部的空格都会忽略，内部的连续空格只会算作一个。这就是浏览器处理空格的基本规则。</p>
+<p>如果希望空格原样输出，可以使用<code>&lt;pre&gt;</code>标签。</p>
+<pre><code class="language-html">&lt;pre&gt;◡◡hello◡◡world◡◡&lt;/pre&gt;
+</code></pre>
+<p>另一种方法是，改用 HTML 实体<code>&amp;nbsp;</code>表示空格。</p>
+<pre><code class="language-html">&lt;p&gt;&amp;nbsp;&amp;nbsp;hello&amp;nbsp;&amp;nbsp;world&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+</code></pre>
+<h2 id="二空格字符"><a class="header" href="#二空格字符">二、空格字符</a></h2>
+<p>HTML 处理空格的规则，适用于多种字符。除了普通的空格键，还包括制表符（<code>\t</code>）和换行符（<code>\r</code>和<code>\n</code>）。</p>
+<p>浏览器会自动把这些符号转成普通的空格键。</p>
+<pre><code class="language-html">&lt;p&gt;hello
+world&lt;/p&gt;
+</code></pre>
+<p>上面代码中，文本内部包含了一个换行符，浏览器视同为空格，输出结果如下。</p>
+<pre><code class="language-html">hello world
+</code></pre>
+<p>所以，文本内部的换行是无效的（除非文本放在<code>&lt;pre&gt;</code>标签内）。</p>
+<pre><code class="language-html">&lt;p&gt;hello&lt;br&gt;world&lt;/p&gt;
+</code></pre>
+<p>上面代码使用<code>&lt;br&gt;</code>标签显式表示换行。</p>
+<h2 id="三css-的-white-space-属性"><a class="header" href="#三css-的-white-space-属性">三、CSS 的 white-space 属性</a></h2>
+<p>HTML 语言的空格处理，基本上就是直接过滤。这样的处理过于粗糙，完全忽视了原始文本内部的空格可能是有意义的。</p>
+<p>CSS 提供了一个 white-space 属性，可以提供更精确一点的空格处理方式。该属性共有六个值，除了一个通用的<code>inherit</code>（继承父元素），下面依次介绍剩下的五个值。</p>
+<h3 id="31-white-space-normal"><a class="header" href="#31-white-space-normal">3.1 white-space: normal</a></h3>
+<p><code>white-space</code>属性的默认值为<code>normal</code>，表示浏览器以正常方式处理空格。</p>
+<pre><code class="language-html">&lt;p&gt;◡◡hellohellohello◡hello
+world
+&lt;/p&gt;
+</code></pre>
+<p>上面代码中，文本前部有两个空格，内部有一个长单词和一个换行符。</p>
+<p>然后，容器<code>&lt;p&gt;</code>指定一个比较小的宽度。为了便于识别，背景色设为红色。</p>
+<pre><code class="language-css">p {
+  width: 100px;
+  background: red;
+}
+</code></pre>
+<p>显示效果如下图。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201807/bg2018073101.png" alt="" /></p>
+<p>可以看到，文首的空格被忽略。由于容器太窄，第一个单词溢出容器，然后在后面一个空格处换行。文本内部的换行符自动转成了空格。</p>
+<h3 id="32-white-space-nowrap"><a class="header" href="#32-white-space-nowrap">3.2 white-space: nowrap</a></h3>
+<p><code>white-space</code>属性为<code>nowrap</code>时，不会因为超出容器宽度而发生换行。</p>
+<pre><code class="language-css">p {
+  white-space: nowrap;
+}
+</code></pre>
+<p>显示效果如下图。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201807/bg2018073102.png" alt="" /></p>
+<p>所有文本显示为一行，不会换行。</p>
+<h3 id="33-white-space-pre"><a class="header" href="#33-white-space-pre">3.3 white-space: pre</a></h3>
+<p><code>white-space</code>属性为<code>pre</code>时，就按照<code>&lt;pre&gt;</code>标签的方式处理。</p>
+<pre><code class="language-css">p {
+  white-space: pre;
+}
+</code></pre>
+<p>显示效果如下图。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201807/bg2018073103.png" alt="" /></p>
+<p>上面结果与原始文本完全一致，所有空格和换行符都保留了。</p>
+<h3 id="34-white-space-pre-wrap"><a class="header" href="#34-white-space-pre-wrap">3.4 white-space: pre-wrap</a></h3>
+<p><code>white-space</code>属性为<code>pre-wrap</code>时，基本还是按照<code>&lt;pre&gt;</code>标签的方式处理，唯一区别是超出容器宽度时，会发生换行。</p>
+<pre><code class="language-css">p {
+  white-space: pre-wrap;
+}
+</code></pre>
+<p>显示效果如下图。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201807/bg2018073104.png" alt="" /></p>
+<p>文首的空格、内部的空格和换行符都保留了，超出容器的地方发生了折行。</p>
+<h3 id="35-white-space-pre-line"><a class="header" href="#35-white-space-pre-line">3.5 white-space: pre-line</a></h3>
+<p><code>white-space</code>属性为<code>pre-line</code>时，意为保留换行符。除了换行符会原样输出，其他都与<code>white-space:normal</code>规则一致。</p>
+<pre><code class="language-css">p {
+  white-space: pre-line;
+}
+</code></pre>
+<p>显示效果如下图。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201807/bg2018073105.png" alt="" /></p>
+<p>除了文本内部的换行符没有转成空格，其他都与<code>normal</code>的处理规则一致。这对于诗歌类型的文本很有用。</p>
+<h2 id="四参考链接"><a class="header" href="#四参考链接">四、参考链接</a></h2>
+<ul>
+<li><a href="https://medium.com/@patrickbrosset/when-does-white-space-matter-in-html-b90e8a7cdd33">When does white space matter in HTML?</a>，by Patrick Brosset</li>
+<li><a href="https://css-tricks.com/almanac/properties/w/whitespace/">white-space</a>，by Sara Cope </li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../docs/text/text.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../docs/text/text.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

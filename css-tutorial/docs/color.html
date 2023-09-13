@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>color - css-tutorial</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../docs/advanced.html"><strong aria-hidden="true">1.</strong> advanced</a></li><li class="chapter-item expanded "><a href="../docs/animation.html"><strong aria-hidden="true">2.</strong> animation</a></li><li class="chapter-item expanded "><a href="../docs/background.html"><strong aria-hidden="true">3.</strong> background</a></li><li class="chapter-item expanded "><a href="../docs/block.html"><strong aria-hidden="true">4.</strong> block</a></li><li class="chapter-item expanded "><a href="../docs/color.html" class="active"><strong aria-hidden="true">5.</strong> color</a></li><li class="chapter-item expanded "><a href="../docs/component.html"><strong aria-hidden="true">6.</strong> component</a></li><li class="chapter-item expanded "><a href="../docs/display.html"><strong aria-hidden="true">7.</strong> display</a></li><li class="chapter-item expanded "><a href="../docs/feature.html"><strong aria-hidden="true">8.</strong> feature</a></li><li class="chapter-item expanded "><a href="../docs/font.html"><strong aria-hidden="true">9.</strong> font</a></li><li class="chapter-item expanded "><a href="../docs/function.html"><strong aria-hidden="true">10.</strong> function</a></li><li class="chapter-item expanded "><a href="../docs/image.html"><strong aria-hidden="true">11.</strong> image</a></li><li class="chapter-item expanded "><a href="../docs/intro.html"><strong aria-hidden="true">12.</strong> intro</a></li><li class="chapter-item expanded "><a href="../docs/media-query.html"><strong aria-hidden="true">13.</strong> media-query</a></li><li class="chapter-item expanded "><a href="../docs/operation.html"><strong aria-hidden="true">14.</strong> operation</a></li><li class="chapter-item expanded "><a href="../docs/position.html"><strong aria-hidden="true">15.</strong> position</a></li><li class="chapter-item expanded "><a href="../docs/properties.html"><strong aria-hidden="true">16.</strong> properties</a></li><li class="chapter-item expanded "><a href="../docs/responsive.html"><strong aria-hidden="true">17.</strong> responsive</a></li><li class="chapter-item expanded "><a href="../docs/transform.html"><strong aria-hidden="true">18.</strong> transform</a></li><li class="chapter-item expanded "><a href="../docs/unit.html"><strong aria-hidden="true">19.</strong> unit</a></li><li class="chapter-item expanded affix "><li class="part-title">advance</li><li class="chapter-item expanded "><a href="../docs/advance/print.html"><strong aria-hidden="true">20.</strong> print</a></li><li class="chapter-item expanded affix "><li class="part-title">feature</li><li class="chapter-item expanded "><a href="../docs/feature/counter.html"><strong aria-hidden="true">21.</strong> counter</a></li><li class="chapter-item expanded affix "><li class="part-title">images</li><li class="chapter-item expanded "><a href="../docs/images/*.html"><strong aria-hidden="true">22.</strong> </a></li><li class="chapter-item expanded affix "><li class="part-title">layout</li><li class="chapter-item expanded "><a href="../docs/layout/column.html"><strong aria-hidden="true">23.</strong> column</a></li><li class="chapter-item expanded "><a href="../docs/layout/flexbox.html"><strong aria-hidden="true">24.</strong> flexbox</a></li><li class="chapter-item expanded "><a href="../docs/layout/float.html"><strong aria-hidden="true">25.</strong> float</a></li><li class="chapter-item expanded "><a href="../docs/layout/grid.html"><strong aria-hidden="true">26.</strong> grid</a></li><li class="chapter-item expanded "><a href="../docs/layout/table.html"><strong aria-hidden="true">27.</strong> table</a></li><li class="chapter-item expanded affix "><li class="part-title">selectors</li><li class="chapter-item expanded "><a href="../docs/selectors/attribute.html"><strong aria-hidden="true">28.</strong> attribute</a></li><li class="chapter-item expanded "><a href="../docs/selectors/basic.html"><strong aria-hidden="true">29.</strong> basic</a></li><li class="chapter-item expanded "><a href="../docs/selectors/pseudo-class.html"><strong aria-hidden="true">30.</strong> pseudo-class</a></li><li class="chapter-item expanded affix "><li class="part-title">text</li><li class="chapter-item expanded "><a href="../docs/text/text-decoration.html"><strong aria-hidden="true">31.</strong> text-decoration</a></li><li class="chapter-item expanded "><a href="../docs/text/text.html"><strong aria-hidden="true">32.</strong> text</a></li><li class="chapter-item expanded "><a href="../docs/text/white-space.html"><strong aria-hidden="true">33.</strong> white-space</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">css-tutorial</h1>
+
+                    <div class="right-buttons">
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="颜色"><a class="header" href="#颜色">颜色</a></h1>
+<h2 id="颜色关键字"><a class="header" href="#颜色关键字">颜色关键字</a></h2>
+<p>CSS 允许使用关键字表示颜色，CSS2.1 设置了16个基本的颜色，CSS 3 又增加了131个。</p>
+<h2 id="六位颜色表示法"><a class="header" href="#六位颜色表示法">六位颜色表示法</a></h2>
+<p>六位颜色表示法又称为 RGB 表示，分别使用两位十六进制数表示红色（R）、绿色（G）、蓝色（B），组合在一起就是六位，然后加上<code>#</code>前缀，比如<code>#59007F</code>。</p>
+<p>每种颜色使用0～255表示浓度，0表示没有，255表示浓度最深。</p>
+<p>如果一个十六进制颜色是由三对重复的数字组成的，如<code>#ff3344</code>，可以缩写为<code>#f34</code>。</p>
+<h2 id="八位颜色表示法"><a class="header" href="#八位颜色表示法">八位颜色表示法</a></h2>
+<p>Chrome 浏览器支持八位的颜色表示法<code>RRGGBBAA</code>，前六位是红、绿、蓝颜色值，后两位表示透明度（alpha transparency）。比如，<code>#ffffff80</code>相当于<code>rgba(255, 255, 255, .5)</code>。</p>
+<p>alpha设置越接近0，颜色就越透明。如果设为0，就是完全透明的，就像没有设置任何颜色。类似地，1表示完全不透明。</p>
+<h2 id="hsl-和-hsla-表示法"><a class="header" href="#hsl-和-hsla-表示法">HSL 和 HSLA 表示法</a></h2>
+<p>HSL 代表色相（hue）、饱和度（saturation）和亮度（lightness），其中色相的取值范围为0～360，饱和度和亮度的取值均为百分数，范围为0～100%。</p>
+<ul>
+<li>红色为hsl(0,100%,50%);</li>
+<li>黄色为hsl(60,100%,50%);</li>
+<li>绿色为hsl(120,100%,50%);</li>
+<li>青色为hsl(180,100%,50%);</li>
+<li>蓝色为hsl(240,100%,50%);</li>
+<li>紫红色为hsl(300,100%,50%);</li>
+</ul>
+<p>用HSLA指定alpha透明度的方法与RGBA是一致的。</p>
+<h2 id="currentcolor"><a class="header" href="#currentcolor">currentColor</a></h2>
+<p><code>currentColor</code>是一个属性值，代表当前元素的<code>color</code>属性的值。</p>
+<pre><code class="language-css">.box {
+  color: red;
+  border: 1px solid currentColor;
+  box-shadow: 0 0 2px 2px currentColor;
+}
+</code></pre>
+<p>上面代码，<code>border</code>和<code>box-shadow</code>的颜色都与<code>color</code>保持一致。这种写法的好处是，如果要修改<code>color</code>，只要修改一处就可以了，不用修改三个地方。</p>
+<p><code>currentColor</code>的另一个用处，是让衍生类都继承基类的颜色。</p>
+<pre><code class="language-css">.box {
+    color: red;
+}
+.box .child-1 {
+    background: currentColor;
+}
+.box .child-2 {
+    color: currentColor;
+    border 1px solid currentColor;
+}
+</code></pre>
+<p>伪元素也可以使用<code>currentColor</code>。</p>
+<pre><code class="language-css">.box {
+    color: red;
+}
+.box:before {
+    color: currentColor;
+    border: 1px solid currentColor;
+}
+</code></pre>
+<h2 id="参考链接"><a class="header" href="#参考链接">参考链接</a></h2>
+<ul>
+<li><a href="http://www.qcyoung.com/2016/09/28/%E3%80%90%E8%AF%91%E3%80%91%E4%BD%BF%E7%94%A8%20currentColor%20%E5%B1%9E%E6%80%A7%E5%86%99%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84%20CSS%20%E4%BB%A3%E7%A0%81/">使用 currentColor 属性写出更好的 CSS 代码</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../docs/block.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../docs/component.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../docs/block.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../docs/component.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

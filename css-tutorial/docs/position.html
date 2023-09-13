@@ -1,0 +1,334 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>position - css-tutorial</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../docs/advanced.html"><strong aria-hidden="true">1.</strong> advanced</a></li><li class="chapter-item expanded "><a href="../docs/animation.html"><strong aria-hidden="true">2.</strong> animation</a></li><li class="chapter-item expanded "><a href="../docs/background.html"><strong aria-hidden="true">3.</strong> background</a></li><li class="chapter-item expanded "><a href="../docs/block.html"><strong aria-hidden="true">4.</strong> block</a></li><li class="chapter-item expanded "><a href="../docs/color.html"><strong aria-hidden="true">5.</strong> color</a></li><li class="chapter-item expanded "><a href="../docs/component.html"><strong aria-hidden="true">6.</strong> component</a></li><li class="chapter-item expanded "><a href="../docs/display.html"><strong aria-hidden="true">7.</strong> display</a></li><li class="chapter-item expanded "><a href="../docs/feature.html"><strong aria-hidden="true">8.</strong> feature</a></li><li class="chapter-item expanded "><a href="../docs/font.html"><strong aria-hidden="true">9.</strong> font</a></li><li class="chapter-item expanded "><a href="../docs/function.html"><strong aria-hidden="true">10.</strong> function</a></li><li class="chapter-item expanded "><a href="../docs/image.html"><strong aria-hidden="true">11.</strong> image</a></li><li class="chapter-item expanded "><a href="../docs/intro.html"><strong aria-hidden="true">12.</strong> intro</a></li><li class="chapter-item expanded "><a href="../docs/media-query.html"><strong aria-hidden="true">13.</strong> media-query</a></li><li class="chapter-item expanded "><a href="../docs/operation.html"><strong aria-hidden="true">14.</strong> operation</a></li><li class="chapter-item expanded "><a href="../docs/position.html" class="active"><strong aria-hidden="true">15.</strong> position</a></li><li class="chapter-item expanded "><a href="../docs/properties.html"><strong aria-hidden="true">16.</strong> properties</a></li><li class="chapter-item expanded "><a href="../docs/responsive.html"><strong aria-hidden="true">17.</strong> responsive</a></li><li class="chapter-item expanded "><a href="../docs/transform.html"><strong aria-hidden="true">18.</strong> transform</a></li><li class="chapter-item expanded "><a href="../docs/unit.html"><strong aria-hidden="true">19.</strong> unit</a></li><li class="chapter-item expanded affix "><li class="part-title">advance</li><li class="chapter-item expanded "><a href="../docs/advance/print.html"><strong aria-hidden="true">20.</strong> print</a></li><li class="chapter-item expanded affix "><li class="part-title">feature</li><li class="chapter-item expanded "><a href="../docs/feature/counter.html"><strong aria-hidden="true">21.</strong> counter</a></li><li class="chapter-item expanded affix "><li class="part-title">images</li><li class="chapter-item expanded "><a href="../docs/images/*.html"><strong aria-hidden="true">22.</strong> </a></li><li class="chapter-item expanded affix "><li class="part-title">layout</li><li class="chapter-item expanded "><a href="../docs/layout/column.html"><strong aria-hidden="true">23.</strong> column</a></li><li class="chapter-item expanded "><a href="../docs/layout/flexbox.html"><strong aria-hidden="true">24.</strong> flexbox</a></li><li class="chapter-item expanded "><a href="../docs/layout/float.html"><strong aria-hidden="true">25.</strong> float</a></li><li class="chapter-item expanded "><a href="../docs/layout/grid.html"><strong aria-hidden="true">26.</strong> grid</a></li><li class="chapter-item expanded "><a href="../docs/layout/table.html"><strong aria-hidden="true">27.</strong> table</a></li><li class="chapter-item expanded affix "><li class="part-title">selectors</li><li class="chapter-item expanded "><a href="../docs/selectors/attribute.html"><strong aria-hidden="true">28.</strong> attribute</a></li><li class="chapter-item expanded "><a href="../docs/selectors/basic.html"><strong aria-hidden="true">29.</strong> basic</a></li><li class="chapter-item expanded "><a href="../docs/selectors/pseudo-class.html"><strong aria-hidden="true">30.</strong> pseudo-class</a></li><li class="chapter-item expanded affix "><li class="part-title">text</li><li class="chapter-item expanded "><a href="../docs/text/text-decoration.html"><strong aria-hidden="true">31.</strong> text-decoration</a></li><li class="chapter-item expanded "><a href="../docs/text/text.html"><strong aria-hidden="true">32.</strong> text</a></li><li class="chapter-item expanded "><a href="../docs/text/white-space.html"><strong aria-hidden="true">33.</strong> white-space</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">css-tutorial</h1>
+
+                    <div class="right-buttons">
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="position"><a class="header" href="#position">position</a></h1>
+<p><code>position</code>属性用来指定一个元素在网页上的位置，一共有5种定位方式，即<code>position</code>属性主要有五个值。</p>
+<blockquote>
+<ul>
+<li><code>static</code></li>
+<li><code>relative</code></li>
+<li><code>fixed</code></li>
+<li><code>absolute</code></li>
+<li><code>sticky</code></li>
+</ul>
+</blockquote>
+<p>下面就依次介绍这五个值。</p>
+<h2 id="static-属性值"><a class="header" href="#static-属性值">static 属性值</a></h2>
+<p><code>static</code>是<code>position</code>属性的默认值。如果省略<code>position</code>属性，浏览器就认为该元素是<code>static</code>定位。</p>
+<p>这时，浏览器会按照源码的顺序，决定每个元素的位置，这称为“正常的页面流”（normal flow）。每个块级元素占据自己的区块（block），元素与元素之间不产生重叠，这个位置就是元素的默认位置。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201911/bg2019111720.jpg" alt="" /></p>
+<p>注意，<code>static</code>定位所导致的元素位置，是浏览器自主决定的，所以这时<code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>这四个属性无效。</p>
+<h2 id="relativeabsolutefixed"><a class="header" href="#relativeabsolutefixed">relative，absolute，fixed</a></h2>
+<p><code>relative</code>、<code>absolute</code>、<code>fixed</code>这三个属性值有一个共同点，都是相对于某个基点的定位，不同之处仅仅在于基点不同。所以，只要理解了它们的基点是什么，就很容易掌握这三个属性值。</p>
+<p>这三种定位都不会对其他元素的位置产生影响，即不管有没有这个元素，其他元素的位置不变，因此元素之间可能产生重叠。</p>
+<h3 id="relative-属性值"><a class="header" href="#relative-属性值">relative 属性值</a></h3>
+<p><code>relative</code>表示，相对于默认位置（即<code>static</code>时的位置）进行偏移，即定位基点是元素的默认位置。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201911/bg2019111721.jpg" alt="" /></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201911/bg2019111722.jpg" alt="" /></p>
+<p>它必须搭配<code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>这四个属性一起使用，用来指定偏移的方向和距离。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201911/bg2019111723.jpg" alt="" /></p>
+<pre><code class="language-css">div {
+  position: relative;
+  top: 20px;
+}
+</code></pre>
+<p>上面代码中，<code>div</code>元素从默认位置向下偏移<code>20px</code>（即距离顶部<code>20px</code>）。</p>
+<h3 id="absolute-属性值"><a class="header" href="#absolute-属性值">absolute 属性值</a></h3>
+<p><code>absolute</code>表示，相对于祖先元素（一般是父元素）进行偏移，即定位基点通常是父元素。</p>
+<p>它有一个重要的限制条件：父元素不能是<code>static</code>定位，否则定位基点会移到最近一个非<code>static</code>定位的祖先元素。如果所有祖先元素都是<code>static</code>定位，定位基点就变成整个网页的根元素<code>html</code>。另外，<code>absolute</code>定位也必须搭配<code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>这四个属性一起使用。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201911/bg2019111801.jpg" alt="" /></p>
+<pre><code class="language-css">/*
+  HTML 代码如下
+  &lt;div id=&quot;father&quot;&gt;
+    &lt;div id=&quot;son&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+*/
+
+#father {
+  positon: relative;
+}
+#son {
+  position: absolute;
+  top: 20px;
+}
+</code></pre>
+<p>上面代码中，父元素是<code>relative</code>定位，子元素是<code>absolute</code>定位，所以子元素的定位基点是父元素，相对于父元素的顶部向下偏移<code>20px</code>。如果父元素是<code>static</code>定位，上例的子元素就是距离网页的顶部向下偏移<code>20px</code>。</p>
+<p>注意，<code>absolute</code>定位的元素会被“正常页面流”忽略，即在“正常页面流”中，该元素所占空间为零，周边元素不受影响。</p>
+<h3 id="fixed-属性值"><a class="header" href="#fixed-属性值">fixed 属性值</a></h3>
+<p><code>fixed</code>表示，相对于视口（viewport，浏览器窗口）进行偏移，即定位基点是浏览器窗口。这会导致元素的位置不随页面滚动而变化，好像固定在网页上一样。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201911/bg2019111802.jpg" alt="" /></p>
+<p>它如果搭配<code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>这四个属性一起使用，表示元素的初始位置是基于视口计算的，否则初始位置就是元素的默认位置。</p>
+<pre><code class="language-css">div {
+  position: fixed;
+  top: 0;
+}
+</code></pre>
+<p>上面代码中，<code>div</code>元素始终在视口顶部，不随网页滚动而变化。</p>
+<h2 id="四sticky-属性值"><a class="header" href="#四sticky-属性值">四、sticky 属性值</a></h2>
+<p><code>sticky</code>跟前面四个属性值都不一样，它会产生动态效果，很像<code>relative</code>和<code>fixed</code>的结合：一些时候是<code>relative</code>定位（定位基点是自身默认位置），另一些时候自动变成<code>fixed</code>定位（定位基点是视口）。</p>
+<p>因此，它能够形成“动态固定”的效果。比如，网页的搜索工具栏，初始加载时在自己的默认位置（<code>relative</code>定位）。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201911/bg2019111604.jpg" alt="" /></p>
+<p>页面向下滚动时，工具栏变成固定位置，始终停留在页面头部（<code>fixed</code>定位）。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201911/bg2019111605.jpg" alt="" /></p>
+<p>等到页面重新向上滚动回到原位，工具栏也会回到默认位置。</p>
+<p><code>sticky</code>生效的前提是，必须搭配<code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>这四个属性一起使用，不能省略，否则等同于<code>relative</code>定位，不产生“动态固定”的效果。原因是这四个属性用来定义“偏移距离”，浏览器把它当作<code>sticky</code>的生效门槛。</p>
+<p>它的具体规则是，当页面滚动，父元素开始脱离视口时（即部分不可见），只要与<code>sticky</code>元素的距离达到生效门槛，<code>relative</code>定位自动切换为<code>fixed</code>定位；等到父元素完全脱离视口时（即完全不可见），<code>fixed</code>定位自动切换回<code>relative</code>定位。</p>
+<p>请看下面的示例代码。（注意，除了已被淘汰的 IE 以外，其他浏览器目前都支持<code>sticky</code>。但是，Safari 浏览器需要加上浏览器前缀<code>-webkit-</code>。）</p>
+<pre><code class="language-css">#toolbar {
+  position: -webkit-sticky; /* safari 浏览器 */
+  position: sticky; /* 其他浏览器 */
+  top: 20px;
+}
+</code></pre>
+<p>上面代码中，页面向下滚动时，<code>#toolbar</code>的父元素开始脱离视口，一旦视口的顶部与<code>#toolbar</code>的距离小于<code>20px</code>（门槛值），<code>#toolbar</code>就自动变为<code>fixed</code>定位，保持与视口顶部<code>20px</code>的距离。页面继续向下滚动，父元素彻底离开视口（即整个父元素完全不可见），<code>#toolbar</code>恢复成<code>relative</code>定位。</p>
+<h2 id="五-sticky-的应用"><a class="header" href="#五-sticky-的应用">五、 sticky 的应用</a></h2>
+<p><code>sticky</code>定位可以实现一些很有用的效果。除了上面提到“动态固定”效果，这里再介绍两个。</p>
+<h2 id="51-堆叠效果"><a class="header" href="#51-堆叠效果">5.1 堆叠效果</a></h2>
+<p>堆叠效果（stacking）指的是页面滚动时，下方的元素覆盖上方的元素。下面是一个图片堆叠的例子，下方的图片会随着页面滚动，覆盖上方的图片（查看 <a href="https://jsbin.com/fegiqoquki/edit?html,css,output">demo</a>）。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201911/bg2019111609.jpg" alt="" /></p>
+<p>HTML 代码就是几张图片。</p>
+<pre><code class="language-html">&lt;div&gt;&lt;img src=&quot;pic1.jpg&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;pic2.jpg&quot;&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src=&quot;pic3.jpg&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>CSS 代码极其简单，只要两行。</p>
+<pre><code class="language-css">div {
+  position: sticky;
+  top: 0;
+}
+</code></pre>
+<p>它的原理是页面向下滚动时，每张图片都会变成<code>fixed</code>定位，导致后一张图片重叠在前一张图片上面。详细解释可以看<a href="https://dev.to/vinceumo/slide-stacking-effect-using-position-sticky-91f">这里</a>。</p>
+<h3 id="52-表格的表头锁定"><a class="header" href="#52-表格的表头锁定">5.2 表格的表头锁定</a></h3>
+<p>大型表格滚动的时候，表头始终固定，也可以用<code>sticky</code>实现（查看 <a href="https://jsbin.com/decemanohe/edit?html,css,output">demo</a>）。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201911/bg2019111610.jpg" alt="" /></p>
+<p>CSS 代码也很简单。</p>
+<pre><code class="language-css">th {
+  position: sticky;
+  top: 0; 
+}
+</code></pre>
+<p>需要注意的是，<code>sticky</code>必须设在<code>&lt;th&gt;</code>元素上面，不能设在<code>&lt;thead&gt;</code>和<code>&lt;tr&gt;</code>元素，因为这两个元素没有<code>relative</code>定位，也就无法产生<code>sticky</code>效果。详细解释可以看<a href="https://css-tricks.com/position-sticky-and-table-headers/">这里</a>。</p>
+<h2 id="z-index"><a class="header" href="#z-index">z-index</a></h2>
+<p><code>z-index</code>表示元素重叠时的层次关系。这个值越高，对应的元素就在越上层。所有元素的默认<code>z-index</code>是0。</p>
+<p>由于静态布局的元素不会产生重叠，所以该属性对静态元素无效。只有元素是非静态布局（即<code>position</code>属性的值不是<code>static</code>），<code>z-index</code>属性才有意义。如果没有设置<code>z-index</code>，元素重叠时，HTML 代码中越后面出现的元素在越上层。</p>
+<p><code>z-index</code>属性的难点在于，一组设置了<code>z-index</code>属性的元素，它们的堆叠顺序取决于，它们是否处在同一个堆叠上下文（stacking context）。三种情况会创建堆叠上下文。</p>
+<ul>
+<li>网页的根元素（即<code>&lt;html&gt;</code>元素）</li>
+<li>网页元素是非静态布局，且<code>z-index</code>属性不等于<code>auto</code></li>
+<li>网页元素的<code>opacity</code>属性小于1</li>
+</ul>
+<p>同一个堆叠上下文之中，元素的堆叠（从下层到上层）按照以下顺序决定。</p>
+<ul>
+<li>堆叠上下文的根元素</li>
+<li>设置了定位、且<code>z-index</code>为负值的元素</li>
+<li>没有设置定位的元素</li>
+<li>设置了定位、且<code>z-index</code>为<code>auto</code>的元素</li>
+<li>设置了定位、且<code>z-index</code>为正值的元素</li>
+</ul>
+<pre><code class="language-css">/* HTML 代码如下
+&lt;div id=&quot;container&quot;&gt;
+  &lt;div id=&quot;item-a&quot;&gt;A&lt;/div&gt;
+  &lt;div id=&quot;item-b&quot;&gt;b&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;item-c&quot;&gt;C&lt;/div&gt;
+*/
+
+div {
+  width: 100px;
+  height: 100px;
+}
+
+#item-a {
+  background-color: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+#item-b {
+  background-color: blue;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+}
+
+#item-c {
+  background-color: yellow;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 1;
+}
+</code></pre>
+<p>上面代码中，<code>item-a</code>在最上层，然后是<code>item-b</code>，最下层是<code>item-c</code>。</p>
+<p>现在，对<code>item-a</code>和<code>item-b</code>父元素<code>container</code>设一下定位。</p>
+<pre><code class="language-css">#container {
+  position: relative;
+  z-index: 0;
+}
+/* 或者写成
+#container {
+  opacity: 0.99;
+}
+*/
+</code></pre>
+<p>结果就会变成<code>item-c</code>在最上层，然后是<code>item-a</code>，最下层是<code>item-b</code>。这是因为这时<code>container</code>形成一个独立的堆叠上下文，<code>item-a</code>和<code>item-b</code>处在这个上下文之中，与<code>item-c</code>不再是同一个层级的关系了。</p>
+<h2 id="参考链接"><a class="header" href="#参考链接">参考链接</a></h2>
+<ul>
+<li><a href="https://philipwalton.com/articles/what-no-one-told-you-about-z-index/">What No One Told You About Z-Index</a>, by Philip Walton</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../docs/operation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../docs/properties.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../docs/operation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../docs/properties.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
