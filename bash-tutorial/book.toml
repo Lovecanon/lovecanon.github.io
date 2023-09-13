@@ -1,0 +1,21 @@
+[book]
+title = "Bash 脚本教程"
+authors = ["wangdao"]
+description = ""
+language = "zh"
+multilingual = false
+src = "."
+
+[build]
+build-dir = "book"
+
+[output.html]
+mathjax-support = true
+
+# 搜索
+[output.html.search]
+enable = true
+
+# 打印
+[output.html.print]
+enable = false

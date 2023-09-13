@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>mktemp 命令，trap 命令 - Bash 脚本教程</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../docs/intro.html">简介</a></li><li class="chapter-item expanded "><a href="../docs/grammar.html"><strong aria-hidden="true">1.</strong> 基本语法</a></li><li class="chapter-item expanded "><a href="../docs/expansion.html"><strong aria-hidden="true">2.</strong> 模式扩展</a></li><li class="chapter-item expanded "><a href="../docs/quotation.html"><strong aria-hidden="true">3.</strong> 引号和转义</a></li><li class="chapter-item expanded "><a href="../docs/variable.html"><strong aria-hidden="true">4.</strong> 变量</a></li><li class="chapter-item expanded "><a href="../docs/string.html"><strong aria-hidden="true">5.</strong> 字符串操作</a></li><li class="chapter-item expanded "><a href="../docs/arithmetic.html"><strong aria-hidden="true">6.</strong> 算术运算</a></li><li class="chapter-item expanded "><a href="../docs/readline.html"><strong aria-hidden="true">7.</strong> 行操作</a></li><li class="chapter-item expanded "><a href="../docs/stack.html"><strong aria-hidden="true">8.</strong> 目录堆栈</a></li><li class="chapter-item expanded "><a href="../docs/script.html"><strong aria-hidden="true">9.</strong> 脚本入门</a></li><li class="chapter-item expanded "><a href="../docs/read.html"><strong aria-hidden="true">10.</strong> read 命令</a></li><li class="chapter-item expanded "><a href="../docs/condition.html"><strong aria-hidden="true">11.</strong> 条件判断</a></li><li class="chapter-item expanded "><a href="../docs/loop.html"><strong aria-hidden="true">12.</strong> 循环</a></li><li class="chapter-item expanded "><a href="../docs/function.html"><strong aria-hidden="true">13.</strong> 函数</a></li><li class="chapter-item expanded "><a href="../docs/array.html"><strong aria-hidden="true">14.</strong> 数组</a></li><li class="chapter-item expanded "><a href="../docs/set.html"><strong aria-hidden="true">15.</strong> set 命令，shopt 命令</a></li><li class="chapter-item expanded "><a href="../docs/debug.html"><strong aria-hidden="true">16.</strong> 脚本除错</a></li><li class="chapter-item expanded "><a href="../docs/mktemp.html" class="active"><strong aria-hidden="true">17.</strong> mktemp 命令，trap 命令</a></li><li class="chapter-item expanded "><a href="../docs/startup.html"><strong aria-hidden="true">18.</strong> 启动环境</a></li><li class="chapter-item expanded "><a href="../docs/prompt.html"><strong aria-hidden="true">19.</strong> 命令提示符</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Bash 脚本教程</h1>
+
+                    <div class="right-buttons">
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="mktemp-命令trap-命令"><a class="header" href="#mktemp-命令trap-命令">mktemp 命令，trap 命令</a></h1>
+<p>Bash 脚本有时需要创建临时文件或临时目录。常见的做法是，在<code>/tmp</code>目录里面创建文件或目录，这样做有很多弊端，使用<code>mktemp</code>命令是最安全的做法。</p>
+<h2 id="临时文件的安全问题"><a class="header" href="#临时文件的安全问题">临时文件的安全问题</a></h2>
+<p>直接创建临时文件，尤其在<code>/tmp</code>目录里面，往往会导致安全问题。</p>
+<p>首先，<code>/tmp</code>目录是所有人可读写的，任何用户都可以往该目录里面写文件。创建的临时文件也是所有人可读的。</p>
+<pre><code class="language-bash">$ touch /tmp/info.txt
+$ ls -l /tmp/info.txt
+-rw-r--r-- 1 ruanyf ruanyf 0 12月 28 17:12 /tmp/info.txt
+</code></pre>
+<p>上面命令在<code>/tmp</code>目录直接创建文件，该文件默认是所有人可读的。</p>
+<p>其次，如果攻击者知道临时文件的文件名，他可以创建符号链接，链接到临时文件，可能导致系统运行异常。攻击者也可能向脚本提供一些恶意数据。因此，临时文件最好使用不可预测、每次都不一样的文件名，防止被利用。</p>
+<p>最后，临时文件使用完毕，应该删除。但是，脚本意外退出时，往往会忽略清理临时文件。</p>
+<p>生成临时文件应该遵循下面的规则。</p>
+<blockquote>
+<ul>
+<li>创建前检查文件是否已经存在。</li>
+<li>确保临时文件已成功创建。</li>
+<li>临时文件必须有权限的限制。</li>
+<li>临时文件要使用不可预测的文件名。</li>
+<li>脚本退出时，要删除临时文件（使用<code>trap</code>命令）。</li>
+</ul>
+</blockquote>
+<h2 id="mktemp-命令的用法"><a class="header" href="#mktemp-命令的用法">mktemp 命令的用法</a></h2>
+<p><code>mktemp</code>命令就是为安全创建临时文件而设计的。虽然在创建临时文件之前，它不会检查临时文件是否存在，但是它支持唯一文件名和清除机制，因此可以减轻安全攻击的风险。</p>
+<p>直接运行<code>mktemp</code>命令，就能生成一个临时文件。</p>
+<pre><code class="language-bash">$ mktemp
+/tmp/tmp.4GcsWSG4vj
+
+$ ls -l /tmp/tmp.4GcsWSG4vj
+-rw------- 1 ruanyf ruanyf 0 12月 28 12:49 /tmp/tmp.4GcsWSG4vj
+</code></pre>
+<p>上面命令中，<code>mktemp</code>命令生成的临时文件名是随机的，而且权限是只有用户本人可读写。</p>
+<p>Bash 脚本使用<code>mktemp</code>命令的用法如下。</p>
+<pre><code class="language-bash">#!/bin/bash
+
+TMPFILE=$(mktemp)
+echo &quot;Our temp file is $TMPFILE&quot;
+</code></pre>
+<p>为了确保临时文件创建成功，<code>mktemp</code>命令后面最好使用 OR 运算符（<code>||</code>），保证创建失败时退出脚本。</p>
+<pre><code class="language-bash">#!/bin/bash
+
+TMPFILE=$(mktemp) || exit 1
+echo &quot;Our temp file is $TMPFILE&quot;
+</code></pre>
+<p>为了保证脚本退出时临时文件被删除，可以使用<code>trap</code>命令指定退出时的清除操作。</p>
+<pre><code class="language-bash">#!/bin/bash
+
+trap 'rm -f &quot;$TMPFILE&quot;' EXIT
+
+TMPFILE=$(mktemp) || exit 1
+echo &quot;Our temp file is $TMPFILE&quot;
+</code></pre>
+<h2 id="mktemp-命令的参数"><a class="header" href="#mktemp-命令的参数">mktemp 命令的参数</a></h2>
+<p><code>-d</code>参数可以创建一个临时目录。</p>
+<pre><code class="language-bash">$ mktemp -d
+/tmp/tmp.Wcau5UjmN6
+</code></pre>
+<p><code>-p</code>参数可以指定临时文件所在的目录。默认是使用<code>$TMPDIR</code>环境变量指定的目录，如果这个变量没设置，那么使用<code>/tmp</code>目录。</p>
+<pre><code class="language-bash">$ mktemp -p /home/ruanyf/
+/home/ruanyf/tmp.FOKEtvs2H3
+</code></pre>
+<p><code>-t</code>参数可以指定临时文件的文件名模板，模板的末尾必须至少包含三个连续的<code>X</code>字符，表示随机字符，建议至少使用六个<code>X</code>。默认的文件名模板是<code>tmp.</code>后接十个随机字符。</p>
+<pre><code class="language-bash">$ mktemp -t mytemp.XXXXXXX
+/tmp/mytemp.yZ1HgZV
+</code></pre>
+<h2 id="trap-命令"><a class="header" href="#trap-命令">trap 命令</a></h2>
+<p><code>trap</code>命令用来在 Bash 脚本中响应系统信号。</p>
+<p>最常见的系统信号就是 SIGINT（中断），即按 Ctrl + C 所产生的信号。<code>trap</code>命令的<code>-l</code>参数，可以列出所有的系统信号。</p>
+<pre><code class="language-bash">$ trap -l
+ 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP
+ 6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1
+11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM
+16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP
+21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ
+26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR
+31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3
+38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8
+43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13
+48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12
+53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
+58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
+63) SIGRTMAX-1	64) SIGRTMAX
+</code></pre>
+<p><code>trap</code>的命令格式如下。</p>
+<pre><code class="language-bash">$ trap [动作] [信号1] [信号2] ...
+</code></pre>
+<p>上面代码中，“动作”是一个 Bash 命令，“信号”常用的有以下几个。</p>
+<blockquote>
+<ul>
+<li>HUP：编号1，脚本与所在的终端脱离联系。</li>
+<li>INT：编号2，用户按下 Ctrl + C，意图让脚本终止运行。</li>
+<li>QUIT：编号3，用户按下 Ctrl + 斜杠，意图退出脚本。</li>
+<li>KILL：编号9，该信号用于杀死进程。</li>
+<li>TERM：编号15，这是<code>kill</code>命令发出的默认信号。</li>
+<li>EXIT：编号0，这不是系统信号，而是 Bash 脚本特有的信号，不管什么情况，只要退出脚本就会产生。</li>
+</ul>
+</blockquote>
+<p><code>trap</code>命令响应<code>EXIT</code>信号的写法如下。</p>
+<pre><code class="language-bash">$ trap 'rm -f &quot;$TMPFILE&quot;' EXIT
+</code></pre>
+<p>上面命令中，脚本遇到<code>EXIT</code>信号时，就会执行<code>rm -f &quot;$TMPFILE&quot;</code>。</p>
+<p>trap 命令的常见使用场景，就是在 Bash 脚本中指定退出时执行的清理命令。</p>
+<pre><code class="language-bash">#!/bin/bash
+
+trap 'rm -f &quot;$TMPFILE&quot;' EXIT
+
+TMPFILE=$(mktemp) || exit 1
+ls /etc &gt; $TMPFILE
+if grep -qi &quot;kernel&quot; $TMPFILE; then
+  echo 'find'
+fi
+</code></pre>
+<p>上面代码中，不管是脚本正常执行结束，还是用户按 Ctrl + C 终止，都会产生<code>EXIT</code>信号，从而触发删除临时文件。</p>
+<p>注意，<code>trap</code>命令必须放在脚本的开头。否则，它上方的任何命令导致脚本退出，都不会被它捕获。</p>
+<p>如果<code>trap</code>需要触发多条命令，可以封装一个 Bash 函数。</p>
+<pre><code class="language-bash">function egress {
+  command1
+  command2
+  command3
+}
+
+trap egress EXIT
+</code></pre>
+<h2 id="参考链接"><a class="header" href="#参考链接">参考链接</a></h2>
+<ul>
+<li><a href="https://www.putorius.net/working-with-temporary-files.html">Working with Temporary Files and Directories in Shell Scripts</a>, Steven Vona</li>
+<li><a href="https://www.putorius.net/using-trap-to-exit-bash-scripts-cleanly.html">Using Trap to Exit Bash Scripts Cleanly</a></li>
+<li><a href="https://mywiki.wooledge.org/SignalTrap">Sending and Trapping Signals</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../docs/debug.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../docs/startup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../docs/debug.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../docs/startup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

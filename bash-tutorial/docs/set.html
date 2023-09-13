@@ -1,0 +1,435 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>set 命令，shopt 命令 - Bash 脚本教程</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../docs/intro.html">简介</a></li><li class="chapter-item expanded "><a href="../docs/grammar.html"><strong aria-hidden="true">1.</strong> 基本语法</a></li><li class="chapter-item expanded "><a href="../docs/expansion.html"><strong aria-hidden="true">2.</strong> 模式扩展</a></li><li class="chapter-item expanded "><a href="../docs/quotation.html"><strong aria-hidden="true">3.</strong> 引号和转义</a></li><li class="chapter-item expanded "><a href="../docs/variable.html"><strong aria-hidden="true">4.</strong> 变量</a></li><li class="chapter-item expanded "><a href="../docs/string.html"><strong aria-hidden="true">5.</strong> 字符串操作</a></li><li class="chapter-item expanded "><a href="../docs/arithmetic.html"><strong aria-hidden="true">6.</strong> 算术运算</a></li><li class="chapter-item expanded "><a href="../docs/readline.html"><strong aria-hidden="true">7.</strong> 行操作</a></li><li class="chapter-item expanded "><a href="../docs/stack.html"><strong aria-hidden="true">8.</strong> 目录堆栈</a></li><li class="chapter-item expanded "><a href="../docs/script.html"><strong aria-hidden="true">9.</strong> 脚本入门</a></li><li class="chapter-item expanded "><a href="../docs/read.html"><strong aria-hidden="true">10.</strong> read 命令</a></li><li class="chapter-item expanded "><a href="../docs/condition.html"><strong aria-hidden="true">11.</strong> 条件判断</a></li><li class="chapter-item expanded "><a href="../docs/loop.html"><strong aria-hidden="true">12.</strong> 循环</a></li><li class="chapter-item expanded "><a href="../docs/function.html"><strong aria-hidden="true">13.</strong> 函数</a></li><li class="chapter-item expanded "><a href="../docs/array.html"><strong aria-hidden="true">14.</strong> 数组</a></li><li class="chapter-item expanded "><a href="../docs/set.html" class="active"><strong aria-hidden="true">15.</strong> set 命令，shopt 命令</a></li><li class="chapter-item expanded "><a href="../docs/debug.html"><strong aria-hidden="true">16.</strong> 脚本除错</a></li><li class="chapter-item expanded "><a href="../docs/mktemp.html"><strong aria-hidden="true">17.</strong> mktemp 命令，trap 命令</a></li><li class="chapter-item expanded "><a href="../docs/startup.html"><strong aria-hidden="true">18.</strong> 启动环境</a></li><li class="chapter-item expanded "><a href="../docs/prompt.html"><strong aria-hidden="true">19.</strong> 命令提示符</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Bash 脚本教程</h1>
+
+                    <div class="right-buttons">
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="set-命令shopt-命令"><a class="header" href="#set-命令shopt-命令">set 命令，shopt 命令</a></h1>
+<p><code>set</code>命令是 Bash 脚本的重要环节，却常常被忽视，导致脚本的安全性和可维护性出问题。本章介绍<code>set</code>的基本用法，帮助你写出更安全的 Bash 脚本。</p>
+<h2 id="简介"><a class="header" href="#简介">简介</a></h2>
+<p>我们知道，Bash 执行脚本时，会创建一个子 Shell。</p>
+<pre><code class="language-bash">$ bash script.sh
+</code></pre>
+<p>上面代码中，<code>script.sh</code>是在一个子 Shell 里面执行。这个子 Shell 就是脚本的执行环境，Bash 默认给定了这个环境的各种参数。</p>
+<p><code>set</code>命令用来修改子 Shell 环境的运行参数，即定制环境。一共有十几个参数可以定制，<a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">官方手册</a>有完整清单，本章介绍其中最常用的几个。</p>
+<p>顺便提一下，如果命令行下不带任何参数，直接运行<code>set</code>，会显示所有的环境变量和 Shell 函数。</p>
+<pre><code class="language-bash">$ set
+</code></pre>
+<h2 id="set--u"><a class="header" href="#set--u">set -u</a></h2>
+<p>执行脚本时，如果遇到不存在的变量，Bash 默认忽略它。</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+
+echo $a
+echo bar
+</code></pre>
+<p>上面代码中，<code>$a</code>是一个不存在的变量。执行结果如下。</p>
+<pre><code class="language-bash">$ bash script.sh
+
+bar
+</code></pre>
+<p>可以看到，<code>echo $a</code>输出了一个空行，Bash 忽略了不存在的<code>$a</code>，然后继续执行<code>echo bar</code>。大多数情况下，这不是开发者想要的行为，遇到变量不存在，脚本应该报错，而不是一声不响地往下执行。</p>
+<p><code>set -u</code>就用来改变这种行为。脚本在头部加上它，遇到不存在的变量就会报错，并停止执行。</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+set -u
+
+echo $a
+echo bar
+</code></pre>
+<p>运行结果如下。</p>
+<pre><code class="language-bash">$ bash script.sh
+bash: script.sh:行4: a: 未绑定的变量
+</code></pre>
+<p>可以看到，脚本报错了，并且不再执行后面的语句。</p>
+<p><code>-u</code>还有另一种写法<code>-o nounset</code>，两者是等价的。</p>
+<pre><code class="language-bash">set -o nounset
+</code></pre>
+<h2 id="set--x"><a class="header" href="#set--x">set -x</a></h2>
+<p>默认情况下，脚本执行后，只输出运行结果，没有其他内容。如果多个命令连续执行，它们的运行结果就会连续输出。有时会分不清，某一段内容是什么命令产生的。</p>
+<p><code>set -x</code>用来在运行结果之前，先输出执行的那一行命令。</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+set -x
+
+echo bar
+</code></pre>
+<p>执行上面的脚本，结果如下。</p>
+<pre><code class="language-bash">$ bash script.sh
++ echo bar
+bar
+</code></pre>
+<p>可以看到，执行<code>echo bar</code>之前，该命令会先打印出来，行首以<code>+</code>表示。这对于调试复杂的脚本是很有用的。</p>
+<p><code>-x</code>还有另一种写法<code>-o xtrace</code>。</p>
+<pre><code class="language-bash">set -o xtrace
+</code></pre>
+<p>脚本当中如果要关闭命令输出，可以使用<code>set +x</code>。</p>
+<pre><code class="language-bash">#!/bin/bash
+
+number=1
+
+set -x
+if [ $number = &quot;1&quot; ]; then
+  echo &quot;Number equals 1&quot;
+else
+  echo &quot;Number does not equal 1&quot;
+fi
+set +x
+</code></pre>
+<p>上面的例子中，只对特定的代码段打开命令输出。</p>
+<h2 id="bash-的错误处理"><a class="header" href="#bash-的错误处理">Bash 的错误处理</a></h2>
+<p>如果脚本里面有运行失败的命令（返回值非<code>0</code>），Bash 默认会继续执行后面的命令。</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+
+foo
+echo bar
+</code></pre>
+<p>上面脚本中，<code>foo</code>是一个不存在的命令，执行时会报错。但是，Bash 会忽略这个错误，继续往下执行。</p>
+<pre><code class="language-bash">$ bash script.sh
+script.sh:行3: foo: 未找到命令
+bar
+</code></pre>
+<p>可以看到，Bash 只是显示有错误，并没有终止执行。</p>
+<p>这种行为很不利于脚本安全和除错。实际开发中，如果某个命令失败，往往需要脚本停止执行，防止错误累积。这时，一般采用下面的写法。</p>
+<pre><code class="language-bash">command || exit 1
+</code></pre>
+<p>上面的写法表示只要<code>command</code>有非零返回值，脚本就会停止执行。</p>
+<p>如果停止执行之前需要完成多个操作，就要采用下面三种写法。</p>
+<pre><code class="language-bash"># 写法一
+command || { echo &quot;command failed&quot;; exit 1; }
+
+# 写法二
+if ! command; then echo &quot;command failed&quot;; exit 1; fi
+
+# 写法三
+command
+if [ &quot;$?&quot; -ne 0 ]; then echo &quot;command failed&quot;; exit 1; fi
+</code></pre>
+<p>另外，除了停止执行，还有一种情况。如果两个命令有继承关系，只有第一个命令成功了，才能继续执行第二个命令，那么就要采用下面的写法。</p>
+<pre><code class="language-bash">command1 &amp;&amp; command2
+</code></pre>
+<h2 id="set--e"><a class="header" href="#set--e">set -e</a></h2>
+<p>上面这些写法多少有些麻烦，容易疏忽。<code>set -e</code>从根本上解决了这个问题，它使得脚本只要发生错误，就终止执行。</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+set -e
+
+foo
+echo bar
+</code></pre>
+<p>执行结果如下。</p>
+<pre><code class="language-bash">$ bash script.sh
+script.sh:行4: foo: 未找到命令
+</code></pre>
+<p>可以看到，第4行执行失败以后，脚本就终止执行了。</p>
+<p><code>set -e</code>根据返回值来判断，一个命令是否运行失败。但是，某些命令的非零返回值可能不表示失败，或者开发者希望在命令失败的情况下，脚本继续执行下去。这时可以暂时关闭<code>set -e</code>，该命令执行结束后，再重新打开<code>set -e</code>。</p>
+<pre><code class="language-bash">set +e
+command1
+command2
+set -e
+</code></pre>
+<p>上面代码中，<code>set +e</code>表示关闭<code>-e</code>选项，<code>set -e</code>表示重新打开<code>-e</code>选项。</p>
+<p>还有一种方法是使用<code>command || true</code>，使得该命令即使执行失败，脚本也不会终止执行。</p>
+<pre><code class="language-bash">#!/bin/bash
+set -e
+
+foo || true
+echo bar
+</code></pre>
+<p>上面代码中，<code>true</code>使得这一行语句总是会执行成功，后面的<code>echo bar</code>会执行。</p>
+<p><code>-e</code>还有另一种写法<code>-o errexit</code>。</p>
+<pre><code class="language-bash">set -o errexit
+</code></pre>
+<h2 id="set--o-pipefail"><a class="header" href="#set--o-pipefail">set -o pipefail</a></h2>
+<p><code>set -e</code>有一个例外情况，就是不适用于管道命令。</p>
+<p>所谓管道命令，就是多个子命令通过管道运算符（<code>|</code>）组合成为一个大的命令。Bash 会把最后一个子命令的返回值，作为整个命令的返回值。也就是说，只要最后一个子命令不失败，管道命令总是会执行成功，因此它后面命令依然会执行，<code>set -e</code>就失效了。</p>
+<p>请看下面这个例子。</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+set -e
+
+foo | echo a
+echo bar
+</code></pre>
+<p>执行结果如下。</p>
+<pre><code class="language-bash">$ bash script.sh
+a
+script.sh:行4: foo: 未找到命令
+bar
+</code></pre>
+<p>上面代码中，<code>foo</code>是一个不存在的命令，但是<code>foo | echo a</code>这个管道命令会执行成功，导致后面的<code>echo bar</code>会继续执行。</p>
+<p><code>set -o pipefail</code>用来解决这种情况，只要一个子命令失败，整个管道命令就失败，脚本就会终止执行。</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+set -eo pipefail
+
+foo | echo a
+echo bar
+</code></pre>
+<p>运行后，结果如下。</p>
+<pre><code class="language-bash">$ bash script.sh
+a
+script.sh:行4: foo: 未找到命令
+</code></pre>
+<p>可以看到，<code>echo bar</code>没有执行。</p>
+<h2 id="set--e-1"><a class="header" href="#set--e-1">set -E</a></h2>
+<p>一旦设置了<code>-e</code>参数，会导致函数内的错误不会被<code>trap</code>命令捕获（参考《trap 命令》一章）。<code>-E</code>参数可以纠正这个行为，使得函数也能继承<code>trap</code>命令。</p>
+<pre><code class="language-bash">#!/bin/bash
+set -e
+
+trap &quot;echo ERR trap fired!&quot; ERR
+
+myfunc()
+{
+  # 'foo' 是一个不存在的命令
+  foo
+}
+
+myfunc
+</code></pre>
+<p>上面示例中，<code>myfunc</code>函数内部调用了一个不存在的命令<code>foo</code>，导致执行这个函数会报错。</p>
+<pre><code class="language-bash">$ bash test.sh
+test.sh:行9: foo：未找到命令
+</code></pre>
+<p>但是，由于设置了<code>set -e</code>，函数内部的报错并没有被<code>trap</code>命令捕获，需要加上<code>-E</code>参数才可以。</p>
+<pre><code class="language-bash">#!/bin/bash
+set -Eeuo pipefail
+
+trap &quot;echo ERR trap fired!&quot; ERR
+
+myfunc()
+{
+  # 'foo' 是一个不存在的命令
+  foo
+}
+
+myfunc
+</code></pre>
+<p>执行上面这个脚本，就可以看到<code>trap</code>命令生效了。</p>
+<pre><code class="language-bash">$ bash test.sh
+test.sh:行9: foo：未找到命令
+ERR trap fired!
+</code></pre>
+<h2 id="其他参数"><a class="header" href="#其他参数">其他参数</a></h2>
+<p><code>set</code>命令还有一些其他参数。</p>
+<ul>
+<li><code>set -n</code>：等同于<code>set -o noexec</code>，不运行命令，只检查语法是否正确。</li>
+<li><code>set -f</code>：等同于<code>set -o noglob</code>，表示不对通配符进行文件名扩展。</li>
+<li><code>set -v</code>：等同于<code>set -o verbose</code>，表示打印 Shell 接收到的每一行输入。</li>
+<li><code>set -o noclobber</code>：防止使用重定向运算符<code>&gt;</code>覆盖已经存在的文件。</li>
+</ul>
+<p>上面的<code>-f</code>和<code>-v</code>参数，可以分别使用<code>set +f</code>、<code>set +v</code>关闭。</p>
+<h2 id="set-命令总结"><a class="header" href="#set-命令总结">set 命令总结</a></h2>
+<p>上面重点介绍的<code>set</code>命令的几个参数，一般都放在一起使用。</p>
+<pre><code class="language-bash"># 写法一
+set -Eeuxo pipefail
+
+# 写法二
+set -Eeux
+set -o pipefail
+</code></pre>
+<p>这两种写法建议放在所有 Bash 脚本的头部。</p>
+<p>另一种办法是在执行 Bash 脚本的时候，从命令行传入这些参数。</p>
+<pre><code class="language-bash">$ bash -euxo pipefail script.sh
+</code></pre>
+<h2 id="shopt-命令"><a class="header" href="#shopt-命令">shopt 命令</a></h2>
+<p><code>shopt</code>命令用来调整 Shell 的参数，跟<code>set</code>命令的作用很类似。之所以会有这两个类似命令的主要原因是，<code>set</code>是从 Ksh 继承的，属于 POSIX 规范的一部分，而<code>shopt</code>是 Bash 特有的。</p>
+<p>直接输入<code>shopt</code>可以查看所有参数，以及它们各自打开和关闭的状态。</p>
+<pre><code class="language-bash">$ shopt
+</code></pre>
+<p><code>shopt</code>命令后面跟着参数名，可以查询该参数是否打开。</p>
+<pre><code class="language-bash">$ shopt globstar
+globstar  off
+</code></pre>
+<p>上面例子表示<code>globstar</code>参数默认是关闭的。</p>
+<p><strong>（1）-s</strong></p>
+<p><code>-s</code>用来打开某个参数。</p>
+<pre><code class="language-bash">$ shopt -s optionNameHere
+</code></pre>
+<p><strong>（2）-u</strong></p>
+<p><code>-u</code>用来关闭某个参数。</p>
+<pre><code class="language-bash">$ shopt -u optionNameHere
+</code></pre>
+<p>举例来说，<code>histappend</code>这个参数表示退出当前 Shell 时，将操作历史追加到历史文件中。这个参数默认是打开的，如果使用下面的命令将其关闭，那么当前 Shell 的操作历史将替换掉整个历史文件。</p>
+<pre><code class="language-bash">$ shopt -u histappend
+</code></pre>
+<p><strong>（3）-q</strong></p>
+<p><code>-q</code>的作用也是查询某个参数是否打开，但不是直接输出查询结果，而是通过命令的执行状态（<code>$?</code>）表示查询结果。如果状态为<code>0</code>，表示该参数打开；如果为<code>1</code>，表示该参数关闭。</p>
+<pre><code class="language-bash">$ shopt -q globstar
+$ echo $?
+1
+</code></pre>
+<p>上面命令查询<code>globstar</code>参数是否打开。返回状态为<code>1</code>，表示该参数是关闭的。</p>
+<p>这个用法主要用于脚本，供<code>if</code>条件结构使用。下面例子是如果打开了这个参数，就执行<code>if</code>结构内部的语句。</p>
+<pre><code class="language-bash">if (shopt -q globstar); then
+  ...
+fi
+</code></pre>
+<h2 id="参考链接"><a class="header" href="#参考链接">参考链接</a></h2>
+<ul>
+<li><a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">The Set Builtin</a></li>
+<li><a href="https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/">Safer bash scripts with 'set -euxo pipefail'</a></li>
+<li><a href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/">Writing Robust Bash Shell Scripts</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../docs/array.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../docs/debug.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../docs/array.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../docs/debug.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

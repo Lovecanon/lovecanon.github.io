@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>脚本入门 - Bash 脚本教程</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../docs/intro.html">简介</a></li><li class="chapter-item expanded "><a href="../docs/grammar.html"><strong aria-hidden="true">1.</strong> 基本语法</a></li><li class="chapter-item expanded "><a href="../docs/expansion.html"><strong aria-hidden="true">2.</strong> 模式扩展</a></li><li class="chapter-item expanded "><a href="../docs/quotation.html"><strong aria-hidden="true">3.</strong> 引号和转义</a></li><li class="chapter-item expanded "><a href="../docs/variable.html"><strong aria-hidden="true">4.</strong> 变量</a></li><li class="chapter-item expanded "><a href="../docs/string.html"><strong aria-hidden="true">5.</strong> 字符串操作</a></li><li class="chapter-item expanded "><a href="../docs/arithmetic.html"><strong aria-hidden="true">6.</strong> 算术运算</a></li><li class="chapter-item expanded "><a href="../docs/readline.html"><strong aria-hidden="true">7.</strong> 行操作</a></li><li class="chapter-item expanded "><a href="../docs/stack.html"><strong aria-hidden="true">8.</strong> 目录堆栈</a></li><li class="chapter-item expanded "><a href="../docs/script.html" class="active"><strong aria-hidden="true">9.</strong> 脚本入门</a></li><li class="chapter-item expanded "><a href="../docs/read.html"><strong aria-hidden="true">10.</strong> read 命令</a></li><li class="chapter-item expanded "><a href="../docs/condition.html"><strong aria-hidden="true">11.</strong> 条件判断</a></li><li class="chapter-item expanded "><a href="../docs/loop.html"><strong aria-hidden="true">12.</strong> 循环</a></li><li class="chapter-item expanded "><a href="../docs/function.html"><strong aria-hidden="true">13.</strong> 函数</a></li><li class="chapter-item expanded "><a href="../docs/array.html"><strong aria-hidden="true">14.</strong> 数组</a></li><li class="chapter-item expanded "><a href="../docs/set.html"><strong aria-hidden="true">15.</strong> set 命令，shopt 命令</a></li><li class="chapter-item expanded "><a href="../docs/debug.html"><strong aria-hidden="true">16.</strong> 脚本除错</a></li><li class="chapter-item expanded "><a href="../docs/mktemp.html"><strong aria-hidden="true">17.</strong> mktemp 命令，trap 命令</a></li><li class="chapter-item expanded "><a href="../docs/startup.html"><strong aria-hidden="true">18.</strong> 启动环境</a></li><li class="chapter-item expanded "><a href="../docs/prompt.html"><strong aria-hidden="true">19.</strong> 命令提示符</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Bash 脚本教程</h1>
+
+                    <div class="right-buttons">
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="bash-脚本入门"><a class="header" href="#bash-脚本入门">Bash 脚本入门</a></h1>
+<p>脚本（script）就是包含一系列命令的一个文本文件。Shell 读取这个文件，依次执行里面的所有命令，就好像这些命令直接输入到命令行一样。所有能够在命令行完成的任务，都能够用脚本完成。</p>
+<p>脚本的好处是可以重复使用，也可以指定在特定场合自动调用，比如系统启动或关闭时自动执行脚本。</p>
+<h2 id="shebang-行"><a class="header" href="#shebang-行">Shebang 行</a></h2>
+<p>脚本的第一行通常是指定解释器，即这个脚本必须通过什么解释器执行。这一行以<code>#!</code>字符开头，这个字符称为 Shebang，所以这一行就叫做 Shebang 行。</p>
+<p><code>#!</code>后面就是脚本解释器的位置，Bash 脚本的解释器一般是<code>/bin/sh</code>或<code>/bin/bash</code>。</p>
+<pre><code class="language-bash">#!/bin/sh
+# 或者
+#!/bin/bash
+</code></pre>
+<p><code>#!</code>与脚本解释器之间有没有空格，都是可以的。</p>
+<p>如果 Bash 解释器不放在目录<code>/bin</code>，脚本就无法执行了。为了保险，可以写成下面这样。</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+</code></pre>
+<p>上面命令使用<code>env</code>命令（这个命令总是在<code>/usr/bin</code>目录），返回 Bash 可执行文件的位置。<code>env</code>命令的详细介绍，请看后文。</p>
+<p>Shebang 行不是必需的，但是建议加上这行。如果缺少该行，就需要手动将脚本传给解释器。举例来说，脚本是<code>script.sh</code>，有 Shebang 行的时候，可以直接调用执行。</p>
+<pre><code class="language-bash">$ ./script.sh
+</code></pre>
+<p>上面例子中，<code>script.sh</code>是脚本文件名。脚本通常使用<code>.sh</code>后缀名，不过这不是必需的。</p>
+<p>如果没有 Shebang 行，就只能手动将脚本传给解释器来执行。</p>
+<pre><code class="language-bash">$ /bin/sh ./script.sh
+# 或者
+$ bash ./script.sh
+</code></pre>
+<h2 id="执行权限和路径"><a class="header" href="#执行权限和路径">执行权限和路径</a></h2>
+<p>前面说过，只要指定了 Shebang 行的脚本，可以直接执行。这有一个前提条件，就是脚本需要有执行权限。可以使用下面的命令，赋予脚本执行权限。</p>
+<pre><code class="language-bash"># 给所有用户执行权限
+$ chmod +x script.sh
+
+# 给所有用户读权限和执行权限
+$ chmod +rx script.sh
+# 或者
+$ chmod 755 script.sh
+
+# 只给脚本拥有者读权限和执行权限
+$ chmod u+rx script.sh
+</code></pre>
+<p>脚本的权限通常设为<code>755</code>（拥有者有所有权限，其他人有读和执行权限）或者<code>700</code>（只有拥有者可以执行）。</p>
+<p>除了执行权限，脚本调用时，一般需要指定脚本的路径（比如<code>path/script.sh</code>）。如果将脚本放在环境变量<code>$PATH</code>指定的目录中，就不需要指定路径了。因为 Bash 会自动到这些目录中，寻找是否存在同名的可执行文件。</p>
+<p>建议在主目录新建一个<code>~/bin</code>子目录，专门存放可执行脚本，然后把<code>~/bin</code>加入<code>$PATH</code>。</p>
+<pre><code class="language-bash">export PATH=$PATH:~/bin
+</code></pre>
+<p>上面命令改变环境变量<code>$PATH</code>，将<code>~/bin</code>添加到<code>$PATH</code>的末尾。可以将这一行加到<code>~/.bashrc</code>文件里面，然后重新加载一次<code>.bashrc</code>，这个配置就可以生效了。</p>
+<pre><code class="language-bash">$ source ~/.bashrc
+</code></pre>
+<p>以后不管在什么目录，直接输入脚本文件名，脚本就会执行。</p>
+<pre><code class="language-bash">$ script.sh
+</code></pre>
+<p>上面命令没有指定脚本路径，因为<code>script.sh</code>在<code>$PATH</code>指定的目录中。</p>
+<h2 id="env-命令"><a class="header" href="#env-命令">env 命令</a></h2>
+<p><code>env</code>命令总是指向<code>/usr/bin/env</code>文件，或者说，这个二进制文件总是在目录<code>/usr/bin</code>。</p>
+<p><code>#!/usr/bin/env NAME</code>这个语法的意思是，让 Shell 查找<code>$PATH</code>环境变量里面第一个匹配的<code>NAME</code>。如果你不知道某个命令的具体路径，或者希望兼容其他用户的机器，这样的写法就很有用。</p>
+<p><code>/usr/bin/env bash</code>的意思就是，返回<code>bash</code>可执行文件的位置，前提是<code>bash</code>的路径是在<code>$PATH</code>里面。其他脚本文件也可以使用这个命令。比如 Node.js 脚本的 Shebang 行，可以写成下面这样。</p>
+<pre><code class="language-bash">#!/usr/bin/env node
+</code></pre>
+<p><code>env</code>命令的参数如下。</p>
+<ul>
+<li><code>-i</code>, <code>--ignore-environment</code>：不带环境变量启动。</li>
+<li><code>-u</code>, <code>--unset=NAME</code>：从环境变量中删除一个变量。</li>
+<li><code>--help</code>：显示帮助。</li>
+<li><code>--version</code>：输出版本信息。</li>
+</ul>
+<p>下面是一个例子，新建一个不带任何环境变量的 Shell。</p>
+<pre><code class="language-bash">$ env -i /bin/sh
+</code></pre>
+<h2 id="注释"><a class="header" href="#注释">注释</a></h2>
+<p>Bash 脚本中，<code>#</code>表示注释，可以放在行首，也可以放在行尾。</p>
+<pre><code class="language-bash"># 本行是注释
+echo 'Hello World!'
+
+echo 'Hello World!' # 井号后面的部分也是注释
+</code></pre>
+<p>建议在脚本开头，使用注释说明当前脚本的作用，这样有利于日后的维护。</p>
+<h2 id="脚本参数"><a class="header" href="#脚本参数">脚本参数</a></h2>
+<p>调用脚本的时候，脚本文件名后面可以带有参数。</p>
+<pre><code class="language-bash">$ script.sh word1 word2 word3
+</code></pre>
+<p>上面例子中，<code>script.sh</code>是一个脚本文件，<code>word1</code>、<code>word2</code>和<code>word3</code>是三个参数。</p>
+<p>脚本文件内部，可以使用特殊变量，引用这些参数。</p>
+<ul>
+<li><code>$0</code>：脚本文件名，即<code>script.sh</code>。</li>
+<li><code>$1</code>~<code>$9</code>：对应脚本的第一个参数到第九个参数。</li>
+<li><code>$#</code>：参数的总数。</li>
+<li><code>$@</code>：全部的参数，参数之间使用空格分隔。</li>
+<li><code>$*</code>：全部的参数，参数之间使用变量<code>$IFS</code>值的第一个字符分隔，默认为空格，但是可以自定义。</li>
+</ul>
+<p>如果脚本的参数多于9个，那么第10个参数可以用<code>${10}</code>的形式引用，以此类推。</p>
+<p>注意，如果命令是<code>command -o foo bar</code>，那么<code>-o</code>是<code>$1</code>，<code>foo</code>是<code>$2</code>，<code>bar</code>是<code>$3</code>。</p>
+<p>下面是一个脚本内部读取命令行参数的例子。</p>
+<pre><code class="language-bash">#!/bin/bash
+# script.sh
+
+echo &quot;全部参数：&quot; $@
+echo &quot;命令行参数数量：&quot; $#
+echo '$0 = ' $0
+echo '$1 = ' $1
+echo '$2 = ' $2
+echo '$3 = ' $3
+</code></pre>
+<p>执行结果如下。</p>
+<pre><code class="language-bash">$ ./script.sh a b c
+全部参数：a b c
+命令行参数数量：3
+$0 =  script.sh
+$1 =  a
+$2 =  b
+$3 =  c
+</code></pre>
+<p>用户可以输入任意数量的参数，利用<code>for</code>循环，可以读取每一个参数。</p>
+<pre><code class="language-bash">#!/bin/bash
+
+for i in &quot;$@&quot;; do
+  echo $i
+done
+</code></pre>
+<p>上面例子中，<code>$@</code>返回一个全部参数的列表，然后使用<code>for</code>循环遍历。</p>
+<p>如果多个参数放在双引号里面，视为一个参数。</p>
+<pre><code class="language-bash">$ ./script.sh &quot;a b&quot;
+</code></pre>
+<p>上面例子中，Bash 会认为<code>&quot;a b&quot;</code>是一个参数，<code>$1</code>会返回<code>a b</code>。注意，返回时不包括双引号。</p>
+<h2 id="shift-命令"><a class="header" href="#shift-命令">shift 命令</a></h2>
+<p><code>shift</code>命令可以改变脚本参数，每次执行都会移除脚本当前的第一个参数（<code>$1</code>），使得后面的参数向前一位，即<code>$2</code>变成<code>$1</code>、<code>$3</code>变成<code>$2</code>、<code>$4</code>变成<code>$3</code>，以此类推。</p>
+<p><code>while</code>循环结合<code>shift</code>命令，也可以读取每一个参数。</p>
+<pre><code class="language-bash">#!/bin/bash
+
+echo &quot;一共输入了 $# 个参数&quot;
+
+while [ &quot;$1&quot; != &quot;&quot; ]; do
+  echo &quot;剩下 $# 个参数&quot;
+  echo &quot;参数：$1&quot;
+  shift
+done
+</code></pre>
+<p>上面例子中，<code>shift</code>命令每次移除当前第一个参数，从而通过<code>while</code>循环遍历所有参数。</p>
+<p><code>shift</code>命令可以接受一个整数作为参数，指定所要移除的参数个数，默认为<code>1</code>。</p>
+<pre><code class="language-bash">shift 3
+</code></pre>
+<p>上面的命令移除前三个参数，原来的<code>$4</code>变成<code>$1</code>。</p>
+<h2 id="getopts-命令"><a class="header" href="#getopts-命令">getopts 命令</a></h2>
+<p><code>getopts</code>命令用在脚本内部，可以解析复杂的脚本命令行参数，通常与<code>while</code>循环一起使用，取出脚本所有的带有前置连词线（<code>-</code>）的参数。</p>
+<pre><code class="language-bash">getopts optstring name
+</code></pre>
+<p>它带有两个参数。第一个参数<code>optstring</code>是字符串，给出脚本所有的连词线参数。比如，某个脚本可以有三个配置项参数<code>-l</code>、<code>-h</code>、<code>-a</code>，其中只有<code>-a</code>可以带有参数值，而<code>-l</code>和<code>-h</code>是开关参数，那么<code>getopts</code>的第一个参数写成<code>lha:</code>，顺序不重要。注意，<code>a</code>后面有一个冒号，表示该参数带有参数值，<code>getopts</code>规定带有参数值的配置项参数，后面必须带有一个冒号（<code>:</code>）。<code>getopts</code>的第二个参数<code>name</code>是一个变量名，用来保存当前取到的配置项参数，即<code>l</code>、<code>h</code>或<code>a</code>。</p>
+<p>下面是一个例子。</p>
+<pre><code class="language-bash">while getopts 'lha:' OPTION; do
+  case &quot;$OPTION&quot; in
+    l)
+      echo &quot;linuxconfig&quot;
+      ;;
+
+    h)
+      echo &quot;h stands for h&quot;
+      ;;
+
+    a)
+      avalue=&quot;$OPTARG&quot;
+      echo &quot;The value provided is $OPTARG&quot;
+      ;;
+    ?)
+      echo &quot;script usage: $(basename $0) [-l] [-h] [-a somevalue]&quot; &gt;&amp;2
+      exit 1
+      ;;
+  esac
+done
+shift &quot;$(($OPTIND - 1))&quot;
+</code></pre>
+<p>上面例子中，<code>while</code>循环不断执行<code>getopts 'lha:' OPTION</code>命令，每次执行就会读取一个连词线参数（以及对应的参数值），然后进入循环体。变量<code>OPTION</code>保存的是，当前处理的那一个连词线参数（即<code>l</code>、<code>h</code>或<code>a</code>）。如果用户输入了没有指定的参数（比如<code>-x</code>），那么<code>OPTION</code>等于<code>?</code>。循环体内使用<code>case</code>判断，处理这四种不同的情况。</p>
+<p>如果某个连词线参数带有参数值，比如<code>-a foo</code>，那么处理<code>a</code>参数的时候，环境变量<code>$OPTARG</code>保存的就是参数值。</p>
+<p>注意，只要遇到不带连词线的参数，<code>getopts</code>就会执行失败，从而退出<code>while</code>循环。比如，<code>getopts</code>可以解析<code>command -l foo</code>，但不可以解析<code>command foo -l</code>。另外，多个连词线参数写在一起的形式，比如<code>command -lh</code>，<code>getopts</code>也可以正确处理。</p>
+<p>变量<code>$OPTIND</code>在<code>getopts</code>开始执行前是<code>1</code>，然后每次执行就会加<code>1</code>。等到退出<code>while</code>循环，就意味着连词线参数全部处理完毕。这时，<code>$OPTIND - 1</code>就是已经处理的连词线参数个数，使用<code>shift</code>命令将这些参数移除，保证后面的代码可以用<code>$1</code>、<code>$2</code>等处理命令的主参数。</p>
+<h2 id="配置项参数终止符---"><a class="header" href="#配置项参数终止符---">配置项参数终止符 <code>--</code></a></h2>
+<p><code>-</code>和<code>--</code>开头的参数，会被 Bash 当作配置项解释。但是，有时它们不是配置项，而是实体参数的一部分，比如文件名叫做<code>-f</code>或<code>--file</code>。</p>
+<pre><code class="language-bash">$ cat -f
+$ cat --file
+</code></pre>
+<p>上面命令的原意是输出文件<code>-f</code>和<code>--file</code>的内容，但是会被 Bash 当作配置项解释。</p>
+<p>这时就可以使用配置项参数终止符<code>--</code>，它的作用是告诉 Bash，在它后面的参数开头的<code>-</code>和<code>--</code>不是配置项，只能当作实体参数解释。</p>
+<pre><code class="language-bash">$ cat -- -f
+$ cat -- --file
+</code></pre>
+<p>上面命令可以正确展示文件<code>-f</code>和<code>--file</code>的内容，因为它们放在<code>--</code>的后面，开头的<code>-</code>和<code>--</code>就不再当作配置项解释了。</p>
+<p>如果要确保某个变量不会被当作配置项解释，就要在它前面放上参数终止符<code>--</code>。</p>
+<pre><code class="language-bash">$ ls -- $myPath
+</code></pre>
+<p>上面示例中，<code>--</code>强制变量<code>$myPath</code>只能当作实体参数（即路径名）解释。如果变量不是路径名，就会报错。</p>
+<pre><code class="language-bash">$ myPath=&quot;-l&quot;
+$ ls -- $myPath
+ls: 无法访问'-l': 没有那个文件或目录
+</code></pre>
+<p>上面例子中，变量<code>myPath</code>的值为<code>-l</code>，不是路径。但是，<code>--</code>强制<code>$myPath</code>只能作为路径解释，导致报错“不存在该路径”。</p>
+<p>下面是另一个实际的例子，如果想在文件里面搜索<code>--hello</code>，这时也要使用参数终止符<code>--</code>。</p>
+<pre><code class="language-bash">$ grep -- &quot;--hello&quot; example.txt
+</code></pre>
+<p>上面命令在<code>example.txt</code>文件里面，搜索字符串<code>--hello</code>。这个字符串是<code>--</code>开头，如果不用参数终止符，<code>grep</code>命令就会把<code>--hello</code>当作配置项参数，从而报错。</p>
+<h2 id="exit-命令"><a class="header" href="#exit-命令">exit 命令</a></h2>
+<p><code>exit</code>命令用于终止当前脚本的执行，并向 Shell 返回一个退出值。</p>
+<pre><code class="language-bash">$ exit
+</code></pre>
+<p>上面命令中止当前脚本，将最后一条命令的退出状态，作为整个脚本的退出状态。</p>
+<p><code>exit</code>命令后面可以跟参数，该参数就是退出状态。</p>
+<pre><code class="language-bash"># 退出值为0（成功）
+$ exit 0
+
+# 退出值为1（失败）
+$ exit 1
+</code></pre>
+<p>退出时，脚本会返回一个退出值。脚本的退出值，<code>0</code>表示正常，<code>1</code>表示发生错误，<code>2</code>表示用法不对，<code>126</code>表示不是可执行脚本，<code>127</code>表示命令没有发现。如果脚本被信号<code>N</code>终止，则退出值为<code>128 + N</code>。简单来说，只要退出值非0，就认为执行出错。</p>
+<p>下面是一个例子。</p>
+<pre><code class="language-bash">if [ $(id -u) != &quot;0&quot; ]; then
+  echo &quot;根用户才能执行当前脚本&quot;
+  exit 1
+fi
+</code></pre>
+<p>上面的例子中，<code>id -u</code>命令返回用户的 ID，一旦用户的 ID 不等于<code>0</code>（根用户的 ID），脚本就会退出，并且退出码为<code>1</code>，表示运行失败。</p>
+<p><code>exit</code>与<code>return</code>命令的差别是，<code>return</code>命令是函数的退出，并返回一个值给调用者，脚本依然执行。<code>exit</code>是整个脚本的退出，如果在函数之中调用<code>exit</code>，则退出函数，并终止脚本执行。</p>
+<h2 id="命令执行结果"><a class="header" href="#命令执行结果">命令执行结果</a></h2>
+<p>命令执行结束后，会有一个返回值。<code>0</code>表示执行成功，非<code>0</code>（通常是<code>1</code>）表示执行失败。环境变量<code>$?</code>可以读取前一个命令的返回值。</p>
+<p>利用这一点，可以在脚本中对命令执行结果进行判断。</p>
+<pre><code class="language-bash">cd /path/to/somewhere
+if [ &quot;$?&quot; = &quot;0&quot; ]; then
+  rm *
+else
+  echo &quot;无法切换目录！&quot; 1&gt;&amp;2
+  exit 1
+fi
+</code></pre>
+<p>上面例子中，<code>cd /path/to/somewhere</code>这个命令如果执行成功（返回值等于<code>0</code>），就删除该目录里面的文件，否则退出脚本，整个脚本的返回值变为<code>1</code>，表示执行失败。</p>
+<p>由于<code>if</code>可以直接判断命令的执行结果，执行相应的操作，上面的脚本可以改写成下面的样子。</p>
+<pre><code class="language-bash">if cd /path/to/somewhere; then
+  rm *
+else
+  echo &quot;Could not change directory! Aborting.&quot; 1&gt;&amp;2
+  exit 1
+fi
+</code></pre>
+<p>更简洁的写法是利用两个逻辑运算符<code>&amp;&amp;</code>（且）和<code>||</code>（或）。</p>
+<pre><code class="language-bash"># 第一步执行成功，才会执行第二步
+cd /path/to/somewhere &amp;&amp; rm *
+
+# 第一步执行失败，才会执行第二步
+cd /path/to/somewhere || exit 1
+</code></pre>
+<h2 id="source-命令"><a class="header" href="#source-命令">source 命令</a></h2>
+<p><code>source</code>命令用于执行一个脚本，通常用于重新加载一个配置文件。</p>
+<pre><code class="language-bash">$ source .bashrc
+</code></pre>
+<p><code>source</code>命令最大的特点是在当前 Shell 执行脚本，不像直接执行脚本时，会新建一个子 Shell。所以，<code>source</code>命令执行脚本时，不需要<code>export</code>变量。</p>
+<pre><code class="language-bash">#!/bin/bash
+# test.sh
+echo $foo
+</code></pre>
+<p>上面脚本输出<code>$foo</code>变量的值。</p>
+<pre><code class="language-bash"># 当前 Shell 新建一个变量 foo
+$ foo=1
+
+# 打印输出 1
+$ source test.sh
+1
+
+# 打印输出空字符串
+$ bash test.sh
+</code></pre>
+<p>上面例子中，当前 Shell 的变量<code>foo</code>并没有<code>export</code>，所以直接执行无法读取，但是<code>source</code>执行可以读取。</p>
+<p><code>source</code>命令的另一个用途，是在脚本内部加载外部库。</p>
+<pre><code class="language-bash">#!/bin/bash
+
+source ./lib.sh
+
+function_from_lib
+</code></pre>
+<p>上面脚本在内部使用<code>source</code>命令加载了一个外部库，然后就可以在脚本里面，使用这个外部库定义的函数。</p>
+<p><code>source</code>有一个简写形式，可以使用一个点（<code>.</code>）来表示。</p>
+<pre><code class="language-bash">$ . .bashrc
+</code></pre>
+<h2 id="别名alias-命令"><a class="header" href="#别名alias-命令">别名，alias 命令</a></h2>
+<p><code>alias</code>命令用来为一个命令指定别名，这样更便于记忆。下面是<code>alias</code>的格式。</p>
+<pre><code class="language-bash">alias NAME=DEFINITION
+</code></pre>
+<p>上面命令中，<code>NAME</code>是别名的名称，<code>DEFINITION</code>是别名对应的原始命令。注意，等号两侧不能有空格，否则会报错。</p>
+<p>一个常见的例子是为<code>grep</code>命令起一个<code>search</code>的别名。</p>
+<pre><code class="language-bash">alias search=grep
+</code></pre>
+<p><code>alias</code>也可以用来为长命令指定一个更短的别名。下面是通过别名定义一个<code>today</code>的命令。</p>
+<pre><code class="language-bash">$ alias today='date +&quot;%A, %B %-d, %Y&quot;'
+$ today
+星期一, 一月 6, 2020
+</code></pre>
+<p>有时为了防止误删除文件，可以指定<code>rm</code>命令的别名。</p>
+<pre><code class="language-bash">$ alias rm='rm -i'
+</code></pre>
+<p>上面命令指定<code>rm</code>命令是<code>rm -i</code>，每次删除文件之前，都会让用户确认。</p>
+<p><code>alias</code>定义的别名也可以接受参数，参数会直接传入原始命令。</p>
+<pre><code class="language-bash">$ alias echo='echo It says: '
+$ echo hello world
+It says: hello world
+</code></pre>
+<p>上面例子中，别名定义了<code>echo</code>命令的前两个参数，等同于修改了<code>echo</code>命令的默认行为。</p>
+<p>指定别名以后，就可以像使用其他命令一样使用别名。一般来说，都会把常用的别名写在<code>~/.bashrc</code>的末尾。另外，只能为命令定义别名，为其他部分（比如很长的路径）定义别名是无效的。</p>
+<p>直接调用<code>alias</code>命令，可以显示所有别名。</p>
+<pre><code class="language-bash">$ alias
+</code></pre>
+<p><code>unalias</code>命令可以解除别名。</p>
+<pre><code class="language-bash">$ unalias lt
+</code></pre>
+<h2 id="参考链接"><a class="header" href="#参考链接">参考链接</a></h2>
+<ul>
+<li><a href="https://linuxconfig.org/how-to-use-getopts-to-parse-a-script-options">How to use getopts to parse a script options</a>, Egidio Docile</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../docs/stack.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../docs/read.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../docs/stack.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../docs/read.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

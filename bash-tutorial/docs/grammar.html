@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>基本语法 - Bash 脚本教程</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../docs/intro.html">简介</a></li><li class="chapter-item expanded "><a href="../docs/grammar.html" class="active"><strong aria-hidden="true">1.</strong> 基本语法</a></li><li class="chapter-item expanded "><a href="../docs/expansion.html"><strong aria-hidden="true">2.</strong> 模式扩展</a></li><li class="chapter-item expanded "><a href="../docs/quotation.html"><strong aria-hidden="true">3.</strong> 引号和转义</a></li><li class="chapter-item expanded "><a href="../docs/variable.html"><strong aria-hidden="true">4.</strong> 变量</a></li><li class="chapter-item expanded "><a href="../docs/string.html"><strong aria-hidden="true">5.</strong> 字符串操作</a></li><li class="chapter-item expanded "><a href="../docs/arithmetic.html"><strong aria-hidden="true">6.</strong> 算术运算</a></li><li class="chapter-item expanded "><a href="../docs/readline.html"><strong aria-hidden="true">7.</strong> 行操作</a></li><li class="chapter-item expanded "><a href="../docs/stack.html"><strong aria-hidden="true">8.</strong> 目录堆栈</a></li><li class="chapter-item expanded "><a href="../docs/script.html"><strong aria-hidden="true">9.</strong> 脚本入门</a></li><li class="chapter-item expanded "><a href="../docs/read.html"><strong aria-hidden="true">10.</strong> read 命令</a></li><li class="chapter-item expanded "><a href="../docs/condition.html"><strong aria-hidden="true">11.</strong> 条件判断</a></li><li class="chapter-item expanded "><a href="../docs/loop.html"><strong aria-hidden="true">12.</strong> 循环</a></li><li class="chapter-item expanded "><a href="../docs/function.html"><strong aria-hidden="true">13.</strong> 函数</a></li><li class="chapter-item expanded "><a href="../docs/array.html"><strong aria-hidden="true">14.</strong> 数组</a></li><li class="chapter-item expanded "><a href="../docs/set.html"><strong aria-hidden="true">15.</strong> set 命令，shopt 命令</a></li><li class="chapter-item expanded "><a href="../docs/debug.html"><strong aria-hidden="true">16.</strong> 脚本除错</a></li><li class="chapter-item expanded "><a href="../docs/mktemp.html"><strong aria-hidden="true">17.</strong> mktemp 命令，trap 命令</a></li><li class="chapter-item expanded "><a href="../docs/startup.html"><strong aria-hidden="true">18.</strong> 启动环境</a></li><li class="chapter-item expanded "><a href="../docs/prompt.html"><strong aria-hidden="true">19.</strong> 命令提示符</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Bash 脚本教程</h1>
+
+                    <div class="right-buttons">
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="bash-的基本语法"><a class="header" href="#bash-的基本语法">Bash 的基本语法</a></h1>
+<p>本章介绍 Bash 的最基本语法。</p>
+<h2 id="echo-命令"><a class="header" href="#echo-命令">echo 命令</a></h2>
+<p>由于后面的例子会大量用到<code>echo</code>命令，这里先介绍这个命令。</p>
+<p><code>echo</code>命令的作用是在屏幕输出一行文本，可以将该命令的参数原样输出。</p>
+<pre><code class="language-bash">$ echo hello world
+hello world
+</code></pre>
+<p>上面例子中，<code>echo</code>的参数是<code>hello world</code>，可以原样输出。</p>
+<p>如果想要输出的是多行文本，即包括换行符。这时就需要把多行文本放在引号里面。</p>
+<pre><code class="language-bash">$ echo &quot;&lt;HTML&gt;
+    &lt;HEAD&gt;
+          &lt;TITLE&gt;Page Title&lt;/TITLE&gt;
+    &lt;/HEAD&gt;
+    &lt;BODY&gt;
+          Page body.
+    &lt;/BODY&gt;
+&lt;/HTML&gt;&quot;
+</code></pre>
+<p>上面例子中，<code>echo</code>可以原样输出多行文本。</p>
+<h3 id="-n参数"><a class="header" href="#-n参数"><code>-n</code>参数</a></h3>
+<p>默认情况下，<code>echo</code>输出的文本末尾会有一个回车符。<code>-n</code>参数可以取消末尾的回车符，使得下一个提示符紧跟在输出内容的后面。</p>
+<pre><code class="language-bash">$ echo -n hello world
+hello world$
+</code></pre>
+<p>上面例子中，<code>world</code>后面直接就是下一行的提示符<code>$</code>。</p>
+<pre><code class="language-bash">$ echo a;echo b
+a
+b
+
+$ echo -n a;echo b
+ab
+</code></pre>
+<p>上面例子中，<code>-n</code>参数可以让两个<code>echo</code>命令的输出连在一起，出现在同一行。</p>
+<h3 id="-e参数"><a class="header" href="#-e参数"><code>-e</code>参数</a></h3>
+<p><code>-e</code>参数会解释引号（双引号和单引号）里面的特殊字符（比如换行符<code>\n</code>）。如果不使用<code>-e</code>参数，即默认情况下，引号会让特殊字符变成普通字符，<code>echo</code>不解释它们，原样输出。</p>
+<pre><code class="language-bash">$ echo &quot;Hello\nWorld&quot;
+Hello\nWorld
+
+# 双引号的情况
+$ echo -e &quot;Hello\nWorld&quot;
+Hello
+World
+
+# 单引号的情况
+$ echo -e 'Hello\nWorld'
+Hello
+World
+</code></pre>
+<p>上面代码中，<code>-e</code>参数使得<code>\n</code>解释为换行符，导致输出内容里面出现换行。</p>
+<h2 id="命令格式"><a class="header" href="#命令格式">命令格式</a></h2>
+<p>命令行环境中，主要通过使用 Shell 命令，进行各种操作。Shell 命令基本都是下面的格式。</p>
+<pre><code class="language-bash">$ command [ arg1 ... [ argN ]]
+</code></pre>
+<p>上面代码中，<code>command</code>是具体的命令或者一个可执行文件，<code>arg1 ... argN</code>是传递给命令的参数，它们是可选的。</p>
+<pre><code class="language-bash">$ ls -l
+</code></pre>
+<p>上面这个命令中，<code>ls</code>是命令，<code>-l</code>是参数。</p>
+<p>有些参数是命令的配置项，这些配置项一般都以一个连词线开头，比如上面的<code>-l</code>。同一个配置项往往有长和短两种形式，比如<code>-l</code>是短形式，<code>--list</code>是长形式，它们的作用完全相同。短形式便于手动输入，长形式一般用在脚本之中，可读性更好，利于解释自身的含义。</p>
+<pre><code class="language-bash"># 短形式
+$ ls -r
+
+# 长形式
+$ ls --reverse
+</code></pre>
+<p>上面命令中，<code>-r</code>是短形式，<code>--reverse</code>是长形式，作用完全一样。前者便于输入，后者便于理解。</p>
+<p>Bash 单个命令一般都是一行，用户按下回车键，就开始执行。有些命令比较长，写成多行会有利于阅读和编辑，这时可以在每一行的结尾加上反斜杠，Bash 就会将下一行跟当前行放在一起解释。</p>
+<pre><code class="language-bash">$ echo foo bar
+
+# 等同于
+$ echo foo \
+bar
+</code></pre>
+<h2 id="空格"><a class="header" href="#空格">空格</a></h2>
+<p>Bash 使用空格（或 Tab 键）区分不同的参数。</p>
+<pre><code class="language-bash">$ command foo bar
+</code></pre>
+<p>上面命令中，<code>foo</code>和<code>bar</code>之间有一个空格，所以 Bash 认为它们是两个参数。</p>
+<p>如果参数之间有多个空格，Bash 会自动忽略多余的空格。</p>
+<pre><code class="language-bash">$ echo this is a     test
+this is a test
+</code></pre>
+<p>上面命令中，<code>a</code>和<code>test</code>之间有多个空格，Bash 会忽略多余的空格。</p>
+<h2 id="分号"><a class="header" href="#分号">分号</a></h2>
+<p>分号（<code>;</code>）是命令的结束符，使得一行可以放置多个命令，上一个命令执行结束后，再执行第二个命令。</p>
+<pre><code class="language-bash">$ clear; ls
+</code></pre>
+<p>上面例子中，Bash 先执行<code>clear</code>命令，执行完成后，再执行<code>ls</code>命令。</p>
+<p>注意，使用分号时，第二个命令总是接着第一个命令执行，不管第一个命令执行成功或失败。</p>
+<h2 id="命令的组合符和"><a class="header" href="#命令的组合符和">命令的组合符<code>&amp;&amp;</code>和<code>||</code></a></h2>
+<p>除了分号，Bash 还提供两个命令组合符<code>&amp;&amp;</code>和<code>||</code>，允许更好地控制多个命令之间的继发关系。</p>
+<pre><code class="language-bash">Command1 &amp;&amp; Command2
+</code></pre>
+<p>上面命令的意思是，如果<code>Command1</code>命令运行成功，则继续运行<code>Command2</code>命令。</p>
+<pre><code class="language-bash">Command1 || Command2
+</code></pre>
+<p>上面命令的意思是，如果<code>Command1</code>命令运行失败，则继续运行<code>Command2</code>命令。</p>
+<p>下面是一些例子。</p>
+<pre><code class="language-bash">$ cat filelist.txt ; ls -l filelist.txt
+</code></pre>
+<p>上面例子中，只要<code>cat</code>命令执行结束，不管成功或失败，都会继续执行<code>ls</code>命令。</p>
+<pre><code class="language-bash">$ cat filelist.txt &amp;&amp; ls -l filelist.txt
+</code></pre>
+<p>上面例子中，只有<code>cat</code>命令执行成功，才会继续执行<code>ls</code>命令。如果<code>cat</code>执行失败（比如不存在文件<code>flielist.txt</code>），那么<code>ls</code>命令就不会执行。</p>
+<pre><code class="language-bash">$ mkdir foo || mkdir bar
+</code></pre>
+<p>上面例子中，只有<code>mkdir foo</code>命令执行失败（比如<code>foo</code>目录已经存在），才会继续执行<code>mkdir bar</code>命令。如果<code>mkdir foo</code>命令执行成功，就不会创建<code>bar</code>目录了。</p>
+<h2 id="type-命令"><a class="header" href="#type-命令">type 命令</a></h2>
+<p>Bash 本身内置了很多命令，同时也可以执行外部程序。怎么知道一个命令是内置命令，还是外部程序呢？</p>
+<p><code>type</code>命令用来判断命令的来源。</p>
+<pre><code class="language-bash">$ type echo
+echo is a shell builtin
+$ type ls
+ls is hashed (/bin/ls)
+</code></pre>
+<p>上面代码中，<code>type</code>命令告诉我们，<code>echo</code>是内部命令，<code>ls</code>是外部程序（<code>/bin/ls</code>）。</p>
+<p><code>type</code>命令本身也是内置命令。</p>
+<pre><code class="language-bash">$ type type
+type is a shell builtin
+</code></pre>
+<p>如果要查看一个命令的所有定义，可以使用<code>type</code>命令的<code>-a</code>参数。</p>
+<pre><code class="language-bash">$ type -a echo
+echo is shell builtin
+echo is /usr/bin/echo
+echo is /bin/echo
+</code></pre>
+<p>上面代码表示，<code>echo</code>命令既是内置命令，也有对应的外部程序。</p>
+<p><code>type</code>命令的<code>-t</code>参数，可以返回一个命令的类型：别名（alias），关键词（keyword），函数（function），内置命令（builtin）和文件（file）。</p>
+<pre><code class="language-bash">$ type -t bash
+file
+$ type -t if
+keyword
+</code></pre>
+<p>上面例子中，<code>bash</code>是文件，<code>if</code>是关键词。</p>
+<h2 id="快捷键"><a class="header" href="#快捷键">快捷键</a></h2>
+<p>Bash 提供很多快捷键，可以大大方便操作。下面是一些最常用的快捷键，完整的介绍参见《行操作》一章。</p>
+<ul>
+<li><code>Ctrl + L</code>：清除屏幕并将当前行移到页面顶部。</li>
+<li><code>Ctrl + C</code>：中止当前正在执行的命令。</li>
+<li><code>Shift + PageUp</code>：向上滚动。</li>
+<li><code>Shift + PageDown</code>：向下滚动。</li>
+<li><code>Ctrl + U</code>：从光标位置删除到行首。</li>
+<li><code>Ctrl + K</code>：从光标位置删除到行尾。</li>
+<li><code>Ctrl + W</code>：删除光标位置前一个单词。</li>
+<li><code>Ctrl + D</code>：关闭 Shell 会话。</li>
+<li><code>↑</code>，<code>↓</code>：浏览已执行命令的历史记录。</li>
+</ul>
+<p>除了上面的快捷键，Bash 还具有自动补全功能。命令输入到一半的时候，可以按下 Tab 键，Bash 会自动完成剩下的部分。比如，输入<code>tou</code>，然后按一下 Tab 键，Bash 会自动补上<code>ch</code>。</p>
+<p>除了命令的自动补全，Bash 还支持路径的自动补全。有时，需要输入很长的路径，这时只需要输入前面的部分，然后按下 Tab 键，就会自动补全后面的部分。如果有多个可能的选择，按两次 Tab 键，Bash 会显示所有选项，让你选择。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../docs/intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../docs/expansion.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../docs/intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../docs/expansion.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
