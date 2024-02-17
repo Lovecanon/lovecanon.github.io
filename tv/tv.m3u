@@ -69,9 +69,3 @@ http://39.134.24.162/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226921/1.m3
 http://39.134.24.161/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226921/index.m3u8
 #EXTINF:-1 group-title="央视台" tvg-id="CCTV-17" tvg-logo="https://lovecanon.github.io/tv/logo/CCTV17.png",CCTV-17 农业农村
 http://111.59.63.32:9901/tsfile/live/1023_1.m3u8
-#EXTINF:-1 group-title="卫视台" tvg-id="东方卫视" tvg-logo="https://lovecanon.github.io/tv/logo/东方卫视.png",东方卫视
-http://221.213.43.82:8888/newlive/live/hls/20/live.m3u8
-#EXTINF:-1 group-title="卫视台" tvg-id="东方卫视" tvg-logo="https://lovecanon.github.io/tv/logo/东方卫视.png",东方卫视
-http://221.2.36.34:8888/newlive/live/hls/20/live.m3u8
-#EXTINF:-1 group-title="卫视台" tvg-id="东方卫视" tvg-logo="https://lovecanon.github.io/tv/logo/东方卫视.png",东方卫视
-https://volc-stream.kksmg.com/live/dfws/index.m3u8?volcSecret=b4cfa770ac20773e9a0c1a541a5b1513&volcTime=1706329288
